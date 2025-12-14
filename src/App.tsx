@@ -1,7 +1,7 @@
 import './App.css';
 import TopoBackground from './components/TopoBackground';
 import IdentityCard from './components/IdentityCard';
-import EngineeringLogSection from './components/EngineeringLogSection';
+import EngineeringLogSection from './sections/EngineeringLogSection';
 
 function App() {
   return (
