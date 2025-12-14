@@ -46,28 +46,49 @@ const IdentityCard = () => {
         </div>
       </div>
 
-      {/* 2. Middle (Identity) */}
-      <div style={{ marginBottom: '24px' }}>
-        <h1 style={{ 
-          fontSize: '36px', fontWeight: '700', color: '#ffffff', 
-          letterSpacing: '-0.02em', margin: '0 0 8px 0', fontFamily: 'Inter, sans-serif'
-        }}>
-          Shreyansh Gupta
-        </h1>
-        <p style={{ 
-          fontFamily: 'monospace', fontSize: '13px', color: 'rgba(255,255,255,0.7)', margin: 0 
-        }}>
-          Design Engineer & Full Stack Developer
-        </p>
-      </div>
+      {/* 2. Middle Section (Identity + Bio + Image) */}
+      <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: '24px', marginBottom: '40px' }}>
+        
+        {/* Left Side: Text Content */}
+        <div style={{ flex: 1, minWidth: 0 }}> {/* minWidth: 0 prevents flex child from overflowing */}
+          <div style={{ marginBottom: '24px' }}>
+            <h1 style={{ 
+              fontSize: '36px', fontWeight: '700', color: '#ffffff', 
+              letterSpacing: '-0.02em', margin: '0 0 8px 0', fontFamily: 'Inter, sans-serif'
+            }}>
+              Shreyansh Gupta
+            </h1>
+            <p style={{ 
+              fontFamily: 'monospace', fontSize: '13px', color: 'rgba(255,255,255,0.7)', margin: 0 
+            }}>
+              Design Engineer & Full Stack Developer
+            </p>
+          </div>
 
-      {/* 3. Bio Section */}
-      <p style={{ 
-        fontSize: '16px', lineHeight: '1.7', color: 'rgba(255,255,255,0.7)', 
-        maxWidth: '480px', marginBottom: '40px', fontFamily: 'Inter, sans-serif'
-      }}>
-        Crafting high-performance mobile architectures and pixel-perfect design systems. Currently building at <strong style={{ color: '#fff', fontWeight: 600 }}>Gomini</strong> and <strong style={{ color: '#fff', fontWeight: 600 }}>Fleek.xyz</strong>.
-      </p>
+          <p style={{ 
+            fontSize: '16px', lineHeight: '1.7', color: 'rgba(255,255,255,0.7)', 
+            maxWidth: '480px', margin: 0, fontFamily: 'Inter, sans-serif'
+          }}>
+            Crafting high-performance mobile architectures and pixel-perfect design systems. Currently building at <strong style={{ color: '#fff', fontWeight: 600 }}>Gomini</strong> and <strong style={{ color: '#fff', fontWeight: 600 }}>Fleek.xyz</strong>.
+          </p>
+        </div>
+
+        {/* Right Side: Profile Picture */}
+        <div style={{ flexShrink: 0 }}>
+          <img 
+            src="/Profile Picture.png" 
+            alt="Shreyansh Gupta"
+            className="grayscale hover:grayscale-0 transition-all duration-500 ease-out"
+            style={{ 
+              width: '100px', 
+              height: '100px', 
+              borderRadius: '50%', 
+              objectFit: 'cover',
+              border: '2px solid rgba(255, 255, 255, 0.1)',
+            }}
+          />
+        </div>
+      </div>
 
       {/* 4. Bottom Row (Actions) */}
       <div style={{ display: 'flex', gap: '12px' }}>
