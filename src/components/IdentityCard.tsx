@@ -69,7 +69,7 @@ const IdentityCard = () => {
           }}
         >
           <MapPin size={14} />
-          <span>Chennai, India (Remote)</span>
+          <span>Darjeeling, India</span>
         </div>
       </div>
 
