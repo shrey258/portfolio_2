@@ -1,6 +1,7 @@
 import TopoBackground from '../components/TopoBackground';
 import IdentityCard from '../components/IdentityCard';
 import EngineeringLogSection from '../sections/EngineeringLogSection';
+import SelectedProjectsSection from '../sections/SelectedProjectsSection';
 
 const Home = () => {
   return (
@@ -23,7 +24,13 @@ const Home = () => {
       }}>
         <IdentityCard />
 
+        
+
         <EngineeringLogSection />
+
+
+
+        <SelectedProjectsSection />
       </main>
     </div>
   );
