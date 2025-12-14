@@ -1,99 +1,123 @@
+import { useState } from 'react';
+import { ArrowRight, Layers } from 'lucide-react'; // Added 'Layers' icon
 import WorkCard from '../components/WorkCard';
 
 const EngineeringLogSection = () => {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <section>
-      <h2 style={{
-        fontSize: '14px',
-        fontFamily: 'monospace',
-        color: 'rgba(255, 255, 255, 0.4)',
-        letterSpacing: '0.1em',
-        marginBottom: '32px',
-        textTransform: 'uppercase'
+      {/* HEADER - Cleaned up alignment */}
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'space-between', 
+        alignItems: 'center', // Better vertical alignment
+        marginBottom: '24px'
       }}>
-        Engineering Log
-      </h2>
+        <h2 style={{
+          fontSize: '14px',
+          fontFamily: 'monospace',
+          color: 'rgba(255, 255, 255, 0.5)',
+          letterSpacing: '0.1em',
+          margin: 0,
+          textTransform: 'uppercase'
+        }}>
+          Engineering Log
+        </h2>
+        {/* Removed the redundant top link to clean up the UI */}
+      </div>
       
+      {/* CONTENT GRID - Keeping the Grid look for the main items */}
       <div style={{ 
         display: 'grid', 
-        gridTemplateColumns: '1fr 1fr', 
+        gridTemplateColumns: '1fr 1fr', // Keeps the structure rigid/clean
         gap: '16px',
         width: '100%'
       }}>
-        {/* 1. Gomini (Full Width) */}
+        
+        {/* 1. Gomini (Span 2) */}
         <div style={{ gridColumn: 'span 2' }}>
           <WorkCard 
             title="Gomini"
             role="Founding Engineer (Lead Mobile)"
-            description="Solely architected the 0-to-1 mobile platform. Built a native-grade UX with Shared Element Transitions that reduced field ops time by 30%."
-            tags={['React Native', 'Supabase', 'CI/CD']}
+            date="2025"
+            description="Solely architected the 0-to-1 mobile platform enabling 100% of digital sales. Designed a native-grade UX with Shared Element Transitions."
+            tags={['React Native', 'Reanimated', 'Supabase']}
             variant="full"
           />
         </div>
 
-        {/* 2. Fleek.xyz (Full Width) */}
+        {/* 2. Fleek.xyz (Span 2) */}
         <div style={{ gridColumn: 'span 2' }}>
           <WorkCard 
             title="Fleek.xyz"
-            role="Frontend Engineer (Contract)"
-            description="Engineered a Component Design System across 6 codebases. Built a high-performance Tauri desktop app maintaining 60fps during complex data viz."
-            tags={['Tauri', 'Rust/C++', 'Cloudflare R2', 'Next.js']}
+            role="Frontend Engineer"
+            date="2025"
+            description="Engineered a Component Design System across 6 codebases. Built a high-performance Tauri desktop app maintaining 60fps."
+            tags={['Tauri', 'Rust', 'Cloudflare R2']}
             variant="full"
           />
         </div>
 
-        {/* 3. Subscart (Left Column) */}
-        <div style={{ gridColumn: 'span 1' }}>
-          <WorkCard 
-            title="Subscart"
-            role="Software Eng."
-            description="Achieved 200ms faster perceived latency using Optimistic UI updates on Node.js & Mobile."
-            tags={['Optimistic UI', 'Node.js']}
-            variant="compact"
-          />
-        </div>
-
-        {/* 4. Iotree Minds (Right Column) */}
-        <div style={{ gridColumn: 'span 1' }}>
-          <WorkCard 
-            title="Iotree Minds"
-            role="Mobile Eng."
-            description="Integrated 12 backend APIs and delivered the 'My Clients' module supporting 50+ active users."
-            tags={['API Integration', 'UX Revamp']}
-            variant="compact"
-          />
-        </div>
-
-        {/* 5. Research Footer (Full Width) */}
-        <div style={{ 
-          gridColumn: 'span 2',
-          marginTop: '16px',
-          padding: '24px',
-          borderRadius: '20px',
-          background: 'rgba(255, 255, 255, 0.02)',
-          border: '1px dashed rgba(255, 255, 255, 0.1)',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '8px'
-        }}>
-          <span style={{ 
-            fontFamily: 'monospace', 
-            fontSize: '12px', 
-            color: 'rgba(255, 255, 255, 0.4)',
-            textTransform: 'uppercase',
-            letterSpacing: '0.05em'
-          }}>
-            Research & Experiments
-          </span>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
-            <div style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '14px', fontFamily: 'Inter, sans-serif' }}>
-              <strong style={{ color: '#fff' }}>IIT Madras</strong> — 1Gbps Python Server
+        {/* THE "ARCHIVE" BUTTON - Designed like a Glass Card */}
+        <a 
+          href="/experience" 
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          style={{ 
+            gridColumn: 'span 2', // Full width
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            padding: '24px',
+            borderRadius: '24px',
+            textDecoration: 'none',
+            cursor: 'pointer',
+            transition: 'all 0.3s ease',
+            
+            // THE FIX: Use the same Glass style as WorkCard, but darker
+            background: isHovered ? 'rgba(255, 255, 255, 0.05)' : 'rgba(255, 255, 255, 0.02)',
+            border: isHovered ? '1px solid rgba(255, 255, 255, 0.2)' : '1px solid rgba(255, 255, 255, 0.05)',
+            transform: isHovered ? 'translateY(-2px)' : 'translateY(0)'
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+            {/* Icon to represent "Stack of papers" */}
+            <div style={{
+              padding: '10px',
+              borderRadius: '12px',
+              background: 'rgba(255,255,255,0.05)',
+              color: isHovered ? '#fff' : '#888',
+              transition: 'color 0.3s'
+            }}>
+              <Layers size={20} />
             </div>
-            <div style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '14px', fontFamily: 'Inter, sans-serif' }}>
-              <strong style={{ color: '#fff' }}>Scale Challenges</strong> — GenAI Scraping
+            
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+              <span style={{
+                fontFamily: 'Inter, sans-serif',
+                fontSize: '15px',
+                fontWeight: '500',
+                color: '#fff'
+              }}>
+                View Full Archive
+              </span>
+              <span style={{
+                fontSize: '13px',
+                color: '#666'
+              }}>
+                Including Subscart, Iotree Minds & IIT Madras
+              </span>
             </div>
           </div>
-        </div>
+
+          <ArrowRight 
+            size={18} 
+            color={isHovered ? '#ffffff' : '#666'} 
+            style={{ transition: 'all 0.3s', transform: isHovered ? 'translateX(4px)' : 'none' }}
+          />
+        </a>
+
       </div>
     </section>
   );
