@@ -10,27 +10,22 @@ const Home = () => {
       {/* 1. Background stays fixed behind everything */}
       <TopoBackground />
 
-      {/* 2. The Content Column */}
-      <main style={{
-        width: '100%',
-        maxWidth: '640px', // The "Magic Number" for this mobile-style layout
-        margin: '0 auto', // Centers the column
-        padding: '80px 24px', // Breathing room top/bottom + side padding for mobile
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '64px', // Big vertical gaps between sections feel premium
-        position: 'relative',
-        zIndex: 1,
-      }}>
-        <IdentityCard />
+      {/* 2. The Content Grid */}
+      <main className="w-full max-w-[1200px] mx-auto px-6 py-20 grid grid-cols-1 lg:grid-cols-12 gap-6 relative z-10">
+        {/* Identity Section - Full Width */}
+        <div className="col-span-1 lg:col-span-12">
+          <IdentityCard />
+        </div>
 
-        
+        {/* Featured Project - Main Focus (Left) */}
+        <div className="col-span-1 lg:col-span-7">
+          <SelectedProjectsSection />
+        </div>
 
-        <EngineeringLogSection />
-
-
-
-        <SelectedProjectsSection />
+        {/* Engineering Log - Side List (Right) */}
+        <div className="col-span-1 lg:col-span-5">
+           <EngineeringLogSection />
+        </div>
       </main>
     </div>
   );

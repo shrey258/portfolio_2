@@ -4,129 +4,43 @@ import { MapPin, Mail, Github, Linkedin } from "lucide-react";
 const IdentityCard = () => {
   return (
     <LiquidGlassCard
-      style={{
-        width: "100%",
-        height: "auto",
-        minHeight: "400px",
-        alignItems: "normal",
-        textAlign: "left",
-      }}
+      className="w-full h-auto min-h-[400px] items-start text-left"
     >
       {/* 1. Top Row (Meta) */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginBottom: "40px",
-          flexWrap: "wrap",
-          gap: "16px",
-        }}
-      >
+      <div className="flex justify-between items-center mb-10 flex-wrap gap-4 w-full">
         {/* Status Pill */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "8px",
-            padding: "6px 12px",
-            borderRadius: "999px",
-            background: "rgba(0, 0, 0, 0.3)",
-            border: "1px solid rgba(255, 255, 255, 0.1)",
-          }}
-        >
-          <div
-            style={{
-              width: "8px",
-              height: "8px",
-              borderRadius: "50%",
-              background: "#4ADE80",
-              boxShadow: "0 0 8px #4ADE80",
-            }}
-          />
-          <span
-            style={{
-              fontSize: "12px",
-              color: "rgba(255,255,255,0.9)",
-              fontWeight: 500,
-              fontFamily: "Inter, sans-serif",
-              textShadow: "0 0 10px rgba(74, 222, 128, 0.5)",
-            }}
-          >
+        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/30 border border-white/10">
+          <div className="w-2 h-2 rounded-full bg-green-400 shadow-[0_0_8px_rgba(74,222,128,1)]" />
+          <span className="text-xs text-white/90 font-medium font-sans drop-shadow-[0_0_10px_rgba(74,222,128,0.5)]">
             Open to Work
           </span>
         </div>
 
         {/* Location */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "6px",
-            color: "rgba(255,255,255,0.7)",
-            fontFamily: "monospace",
-            fontSize: "12px",
-          }}
-        >
+        <div className="flex items-center gap-1.5 text-white/70 font-mono text-xs">
           <MapPin size={14} />
           <span>Darjeeling, India</span>
         </div>
       </div>
 
       {/* 2. Middle Section (Identity + Bio + Image) */}
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: "24px",
-          marginBottom: "40px",
-        }}
-      >
+      <div className="flex flex-col-reverse md:flex-row items-start md:items-center justify-between gap-6 mb-10 w-full">
         {/* Left Side: Text Content */}
-        <div style={{ flex: 1, minWidth: 0 }}>
-          {" "}
-          {/* minWidth: 0 prevents flex child from overflowing */}
-          <div style={{ marginBottom: "24px" }}>
-            <h1
-              style={{
-                fontSize: "36px",
-                fontWeight: "700",
-                color: "#ffffff",
-                letterSpacing: "-0.02em",
-                margin: "0 0 8px 0",
-                fontFamily: "Inter, sans-serif",
-              }}
-            >
+        <div className="flex-1 min-w-0 w-full">
+          <div className="mb-6">
+            <h1 className="text-3xl md:text-4xl font-bold text-white -tracking-[0.02em] m-0 mb-2 font-sans">
               Shreyansh Gupta
             </h1>
-            <p
-              style={{
-                fontFamily: "monospace",
-                fontSize: "13px",
-                color: "rgba(255,255,255,0.7)",
-                margin: 0,
-              }}
-            >
+            <p className="font-mono text-[13px] text-white/70 m-0">
               Design Engineer & Full Stack Developer
             </p>
           </div>
-          <p
-            style={{
-              fontSize: "16px",
-              lineHeight: "1.7",
-              color: "rgba(255,255,255,0.7)",
-              maxWidth: "480px",
-              margin: 0,
-              fontFamily: "Inter, sans-serif",
-            }}
-          >
+          <p className="text-base leading-relaxed text-white/70 max-w-[480px] m-0 font-sans">
             Crafting high-performance mobile architectures and pixel-perfect
             design systems. Currently building at{" "}
-            <strong style={{ color: "#fff", fontWeight: 600 }}>Gomini</strong>{" "}
+            <strong className="text-white font-semibold">Gomini</strong>{" "}
             and{" "}
-            <strong style={{ color: "#fff", fontWeight: 600 }}>
+            <strong className="text-white font-semibold">
               Fleek.xyz
             </strong>
             .
@@ -134,24 +48,17 @@ const IdentityCard = () => {
         </div>
 
         {/* Right Side: Profile Picture */}
-        <div style={{ flexShrink: 0 }}>
+        <div className="shrink-0 self-start md:self-auto">
           <img
             src="/Profile Picture.png"
             alt="Shreyansh Gupta"
-            className="grayscale hover:grayscale-0 transition-all duration-500 ease-out"
-            style={{
-              width: "100px",
-              height: "100px",
-              borderRadius: "50%",
-              objectFit: "cover",
-              border: "2px solid rgba(255, 255, 255, 0.1)",
-            }}
+            className="w-[80px] h-[80px] md:w-[100px] md:h-[100px] rounded-full object-cover border-2 border-white/10 grayscale hover:grayscale-0 transition-all duration-500 ease-out"
           />
         </div>
       </div>
 
       {/* 4. Bottom Row (Actions) */}
-      <div style={{ display: "flex", gap: "12px" }}>
+      <div className="flex gap-3 w-full">
         <button
           onClick={() => window.open("mailto:gshrey258@gmail.com", "_blank")}
           className="flex-1 h-11 rounded-xl bg-white/10 border border-white/20 text-white text-sm font-medium flex items-center justify-center gap-2 cursor-pointer transition-all duration-300 hover:bg-white hover:text-black font-mono uppercase tracking-wide"
