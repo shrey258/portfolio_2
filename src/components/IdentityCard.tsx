@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import LiquidGlassCard from "./LiquidGlassCard";
 import TechArsenalGrid from "./TechArsenalGrid";
+import { StatItem, InfoPill, SocialButton } from "./IdentityParts";
 import {
   MapPin,
   Mail,
@@ -47,18 +48,14 @@ const IdentityCard = () => {
           </div>
 
           <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
-              <Globe size={12} className="text-white/50" />
-              <span className="text-xs font-mono text-white/80">
-                IST {time}
-              </span>
-            </div>
-            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
-              <MapPin size={12} className="text-white/50" />
-              <span className="text-xs font-mono text-white/80">
-                Darjeeling, IN
-              </span>
-            </div>
+            <InfoPill
+              icon={<Globe size={12} className="text-white/50" />}
+              text={`IST ${time}`}
+            />
+            <InfoPill
+              icon={<MapPin size={12} className="text-white/50" />}
+              text="Darjeeling, IN"
+            />
           </div>
         </div>
 
@@ -116,26 +113,9 @@ const IdentityCard = () => {
         <div className="flex flex-col md:flex-row justify-between items-end gap-6 w-full pt-2 border-t border-white/5">
           {/* Left: Stats */}
           <div className="flex gap-8">
-            <div>
-              <div className="text-2xl font-bold text-white font-sans">5+</div>
-              <div className="text-[10px] uppercase tracking-wider text-white/40 font-mono mt-1">
-                Startups
-              </div>
-            </div>
-            <div>
-              <div className="text-2xl font-bold text-white font-sans">15+</div>
-              <div className="text-[10px] uppercase tracking-wider text-white/40 font-mono mt-1">
-                Projects
-              </div>
-            </div>
-            <div>
-              <div className="text-2xl font-bold text-white font-sans">
-                100%
-              </div>
-              <div className="text-[10px] uppercase tracking-wider text-white/40 font-mono mt-1">
-                Commitment
-              </div>
-            </div>
+            <StatItem value="5+" label="Startups" />
+            <StatItem value="15+" label="Projects" />
+            <StatItem value="100%" label="Commitment" />
           </div>
 
           {/* Right: Actions */}
@@ -144,28 +124,24 @@ const IdentityCard = () => {
               onClick={() =>
                 window.open("mailto:gshrey258@gmail.com", "_blank")
               }
-              className="flex-1 md:flex-none px-6 h-12 rounded-xl bg-white text-black font-semibold flex items-center justify-center gap-2 hover:bg-gray-200 transition-colors"
+              className="flex-1 md:flex-none px-6 h-12 rounded-xl bg-white text-black font-semibold flex items-center justify-center gap-2 hover:bg-gray-200 transition-colors cursor-pointer"
             >
               <Mail size={18} />
               <span>Connect</span>
             </button>
             <div className="flex gap-2">
-              <button
+              <SocialButton
+                icon={<Github size={20} />}
                 onClick={() =>
                   window.open("https://github.com/shrey258", "_blank")
                 }
-                className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-all"
-              >
-                <Github size={20} />
-              </button>
-              <button
+              />
+              <SocialButton
+                icon={<Linkedin size={20} />}
                 onClick={() =>
                   window.open("https://linkedin.com/in/shrey258", "_blank")
                 }
-                className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-all"
-              >
-                <Linkedin size={20} />
-              </button>
+              />
             </div>
           </div>
         </div>
