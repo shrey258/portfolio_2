@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+@theme {
+  --animate-scan: scan 2s linear infinite;
+  
+  @keyframes scan {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+}
+
 /* CSS reset and base styles can go here */
 body {
   margin: 0;
