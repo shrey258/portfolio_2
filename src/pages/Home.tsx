@@ -2,6 +2,7 @@ import TopoBackground from '../components/TopoBackground';
 import IdentityCard from '../components/IdentityCard';
 import EngineeringLogSection from '../sections/EngineeringLogSection';
 import SelectedProjectsSection from '../sections/SelectedProjectsSection';
+import DesignLabSection from '../sections/DesignLabSection';
 
 const Home = () => {
   return (
@@ -15,6 +16,11 @@ const Home = () => {
         {/* Identity Section - Full Width */}
         <div className="col-span-1 lg:col-span-12">
           <IdentityCard />
+        </div>
+
+        {/* Design Lab - Full Width Bento Grid */}
+        <div className="col-span-1 lg:col-span-12">
+          <DesignLabSection />
         </div>
 
         {/* Featured Project - Main Focus (Left) */}
