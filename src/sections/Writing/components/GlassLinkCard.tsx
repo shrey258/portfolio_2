@@ -1,6 +1,7 @@
 import React from "react";
 
-interface GlassLinkCardProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+interface GlassLinkCardProps
+  extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   className?: string;
 }
 

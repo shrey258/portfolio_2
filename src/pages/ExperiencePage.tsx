@@ -3,7 +3,7 @@ import { ArrowLeft, Clock, Layers } from "lucide-react"; // Added icons
 import { Link } from "react-router-dom";
 import TopoBackground from "../components/TopoBackground";
 import TerminalCard from "../components/TerminalCard";
-import WorkCard from "../components/WorkCard";
+import WorkCard from "../sections/Engineering Log/components/WorkCard";
 
 const ExperiencePage = () => {
   // Scroll to top on mount

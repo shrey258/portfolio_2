@@ -1,5 +1,5 @@
-import ProjectSpotlight from '../components/ProjectSpotlight';
-import SectionHeader from '../components/SectionHeader';
+import ProjectSpotlight from './components/ProjectSpotlight';
+import SectionHeader from '../../components/SectionHeader';
 import { FolderOpen } from 'lucide-react';
 
 const SelectedProjectsSection = () => {

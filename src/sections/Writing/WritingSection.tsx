@@ -1,7 +1,7 @@
 import { ExternalLink, FileText } from "lucide-react";
-import SectionHeader from "../components/SectionHeader";
-import TagPill from "../components/TagPill";
-import GlassLinkCard from "../components/GlassLinkCard";
+import SectionHeader from "../../components/SectionHeader";
+import TagPill from "../../components/TagPill";
+import GlassLinkCard from "./components/GlassLinkCard";
 
 const WritingSection = () => {
   const articles = [

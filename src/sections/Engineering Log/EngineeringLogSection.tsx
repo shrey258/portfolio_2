@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ArrowRight, Layers, NotebookPen } from 'lucide-react'; // Added 'Layers' icon
-import SectionHeader from '../components/SectionHeader';
-import WorkCard from '../components/WorkCard';
+import SectionHeader from '../../components/SectionHeader';
+import WorkCard from './components/WorkCard';
 
 const EngineeringLogSection = () => {
   const [isHovered, setIsHovered] = useState(false);

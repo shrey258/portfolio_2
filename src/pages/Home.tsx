@@ -1,9 +1,9 @@
 import TopoBackground from '../components/TopoBackground';
 import IdentityCard from '../components/IdentityCard';
-import EngineeringLogSection from '../sections/EngineeringLogSection';
-import SelectedProjectsSection from '../sections/SelectedProjectsSection';
+import EngineeringLogSection from '../sections/Engineering Log/EngineeringLogSection';
+import SelectedProjectsSection from '../sections/SelectedProjects/SelectedProjectsSection';
 import DesignLabSection from '../sections/DesignLabSection';
-import WritingSection from '../sections/WritingSection';
+import WritingSection from '../sections/Writing/WritingSection';
 
 const Home = () => {
   return (

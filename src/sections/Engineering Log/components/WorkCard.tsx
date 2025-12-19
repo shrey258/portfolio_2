@@ -1,5 +1,5 @@
 import { useState } from "react";
-import TagPill from "./TagPill";
+import TagPill from "../../../components/TagPill";
 
 interface WorkCardProps {
   title: string;
