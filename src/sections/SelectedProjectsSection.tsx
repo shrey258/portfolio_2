@@ -1,12 +1,15 @@
 import ProjectSpotlight from '../components/ProjectSpotlight';
+import SectionHeader from '../components/SectionHeader';
 
 const SelectedProjectsSection = () => {
   return (
     <section className="h-full">
-      {/* Section Header */}
-      <h2 className="text-sm font-mono text-white/50 tracking-widest uppercase mb-6">
-        Selected Projects
-      </h2>
+      <SectionHeader
+        label="Selected Projects"
+        className="mb-6"
+        labelClassName="text-sm font-mono text-white/50 tracking-widest uppercase whitespace-nowrap"
+        showDivider={false}
+      />
       
       <ProjectSpotlight 
         title="Flag Me"

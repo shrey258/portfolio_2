@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ArrowRight, Layers } from 'lucide-react'; // Added 'Layers' icon
+import SectionHeader from '../components/SectionHeader';
 import WorkCard from '../components/WorkCard';
 
 const EngineeringLogSection = () => {
@@ -7,12 +8,12 @@ const EngineeringLogSection = () => {
 
   return (
     <section className="h-full">
-      {/* HEADER */}
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-sm font-mono text-white/50 tracking-widest uppercase m-0">
-          Engineering Log
-        </h2>
-      </div>
+      <SectionHeader
+        label="Engineering Log"
+        className="mb-6"
+        labelClassName="text-sm font-mono text-white/50 tracking-widest uppercase whitespace-nowrap"
+        showDivider={false}
+      />
       
       {/* CONTENT LIST - Vertical Stack for Sidebar Layout */}
       <div className="flex flex-col gap-4 w-full">

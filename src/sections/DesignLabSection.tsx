@@ -9,6 +9,7 @@ import {
   User,
   Twitter,
 } from "lucide-react";
+import SectionHeader from "../components/SectionHeader";
 
 // Import Video Assets
 import printVideo from "../assets/Print Animation.mov";
@@ -84,27 +85,18 @@ const designs: DesignItem[] = [
 const DesignLabSection = () => {
   return (
     <div className="w-full flex flex-col gap-6 py-24">
-      <div className="flex items-center gap-4 mb-12">
-        <h2 className="text-xl font-mono text-white/60 uppercase tracking-widest whitespace-nowrap">
-          Design Lab
-        </h2>
-        <div className="h-px flex-1 bg-white/10" />
-
-        <a
-          href="https://x.com/shreyg258/highlights"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 backdrop-blur-sm ml-2"
-        >
-          <span className="text-sm font-medium text-white/90">
-            Check out more on
-          </span>
+      <SectionHeader
+        label="Design Lab"
+        ctaLabel="Check out more on"
+        ctaHref="https://x.com/shreyg258/highlights"
+        ctaIcon={
           <Twitter
             size={14}
             className="text-white/70 group-hover:text-white group-hover:scale-110 transition-all duration-300"
           />
-        </a>
-      </div>
+        }
+        className="mb-12"
+      />
 
       {/* Grid: 4 columns. Squares = 1 col, Rectangles = 2 cols */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[280px]">
