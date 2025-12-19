@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowRight, Layers } from 'lucide-react'; // Added 'Layers' icon
+import { ArrowRight, Layers, NotebookPen } from 'lucide-react'; // Added 'Layers' icon
 import SectionHeader from '../components/SectionHeader';
 import WorkCard from '../components/WorkCard';
 
@@ -11,8 +11,9 @@ const EngineeringLogSection = () => {
       <SectionHeader
         label="Engineering Log"
         className="mb-6"
-        labelClassName="text-sm font-mono text-white/50 tracking-widest uppercase whitespace-nowrap"
+        labelClassName="text-base font-mono text-white/50 tracking-widest uppercase whitespace-nowrap"
         showDivider={false}
+        icon={<NotebookPen size={16} className="text-white/60" />}
       />
       
       {/* CONTENT LIST - Vertical Stack for Sidebar Layout */}

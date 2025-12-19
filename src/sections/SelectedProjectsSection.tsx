@@ -1,5 +1,6 @@
 import ProjectSpotlight from '../components/ProjectSpotlight';
 import SectionHeader from '../components/SectionHeader';
+import { FolderOpen } from 'lucide-react';
 
 const SelectedProjectsSection = () => {
   return (
@@ -7,8 +8,9 @@ const SelectedProjectsSection = () => {
       <SectionHeader
         label="Selected Projects"
         className="mb-6"
-        labelClassName="text-sm font-mono text-white/50 tracking-widest uppercase whitespace-nowrap"
+        labelClassName="text-base font-mono text-white/50 tracking-widest uppercase whitespace-nowrap"
         showDivider={false}
+        icon={<FolderOpen size={16} className="text-white/60" />}
       />
       
       <ProjectSpotlight 

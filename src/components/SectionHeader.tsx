@@ -8,6 +8,7 @@ interface SectionHeaderProps {
   className?: string;
   labelClassName?: string;
   showDivider?: boolean;
+  icon?: React.ReactNode;
 }
 
 /**
@@ -22,6 +23,7 @@ const SectionHeader = ({
   className = "",
   labelClassName = "text-xl font-mono text-white/60 uppercase tracking-widest whitespace-nowrap",
   showDivider = true,
+  icon,
 }: SectionHeaderProps) => {
   const containerClasses = [
     "flex items-center gap-4",
@@ -32,9 +34,12 @@ const SectionHeader = ({
 
   return (
     <div className={containerClasses}>
-      <h2 className={labelClassName}>
-        {label}
-      </h2>
+      <div className="flex items-center gap-2">
+        {icon}
+        <h2 className={labelClassName}>
+          {label}
+        </h2>
+      </div>
       {showDivider && <div className="h-px flex-1 bg-white/10" />}
       {ctaLabel && ctaHref && (
         <a
