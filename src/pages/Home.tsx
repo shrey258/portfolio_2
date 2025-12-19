@@ -3,6 +3,7 @@ import IdentityCard from '../components/IdentityCard';
 import EngineeringLogSection from '../sections/EngineeringLogSection';
 import SelectedProjectsSection from '../sections/SelectedProjectsSection';
 import DesignLabSection from '../sections/DesignLabSection';
+import WritingSection from '../sections/WritingSection';
 
 const Home = () => {
   return (
@@ -31,6 +32,11 @@ const Home = () => {
         {/* Engineering Log - Side List (Right) */}
         <div className="col-span-1 lg:col-span-5">
            <EngineeringLogSection />
+        </div>
+
+        {/* Writing - Full Width */}
+        <div className="col-span-1 lg:col-span-12">
+          <WritingSection />
         </div>
       </main>
     </div>
