@@ -1,4 +1,5 @@
 import { useState } from "react";
+import TagPill from "./TagPill";
 
 interface WorkCardProps {
   title: string;
@@ -65,12 +66,7 @@ const WorkCard = ({
       {/* Tags */}
       <div className="flex flex-wrap gap-2">
         {tags.slice(0, isCompact ? 3 : undefined).map((tag, index) => (
-          <span
-            key={index}
-            className="px-3 py-1 rounded-full bg-white/10 text-xs text-white/80 font-sans"
-          >
-            {tag}
-          </span>
+          <TagPill key={index} label={tag} />
         ))}
         {isCompact && tags.length > 3 && (
           <span className="px-3 py-1 text-xs text-white/40 font-sans">

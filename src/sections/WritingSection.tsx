@@ -1,4 +1,5 @@
 import { ExternalLink, FileText } from "lucide-react";
+import TagPill from "../components/TagPill";
 
 const WritingSection = () => {
   const articles = [
@@ -46,12 +47,7 @@ const WritingSection = () => {
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {article.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1 rounded-full bg-white/10 text-xs text-white/80"
-                    >
-                      {tag}
-                    </span>
+                    <TagPill key={tag} label={tag} />
                   ))}
                 </div>
               </div>
