@@ -8,7 +8,6 @@ import {
   Scan,
   User,
   Twitter,
-  Sparkles,
 } from "lucide-react";
 
 // Import Video Assets
@@ -164,17 +163,21 @@ const DesignLabSection = () => {
         ))}
       </div>
 
-      {/* Footer: More Coming Soon */}
-      <div className="flex flex-col items-center justify-center mt-20 px-2 gap-6">
-        <div className="flex items-center gap-3 text-white/40">
-          <Sparkles size={16} className="text-purple-400/80" />
-          <span
-            className="text-3xl md:text-4xl italic tracking-wide"
+      {/* Footer: Statement with Horizon Glow */}
+      <div className="relative flex flex-col items-center justify-center mt-14 pb-12 px-4">
+        {/* Horizon Glow Effect */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-px bg-white/15 blur-[1px]" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[60%] h-[80px] bg-purple-500/12 blur-[70px] rounded-full pointer-events-none" />
+
+        <div className="relative z-10 text-center space-y-2">
+          <h3
+            className="text-3xl md:text-4xl text-white/70 leading-[1.15]"
             style={{ fontFamily: '"Instrument Serif", serif' }}
           >
-            More animations coming soon...
-          </span>
-          <Sparkles size={16} className="text-purple-400/80" />
+            More animations
+            <br />
+            <span className="italic text-white/50">coming soon...</span>
+          </h3>
         </div>
 
         {/* Mobile-only Link */}
@@ -182,7 +185,7 @@ const DesignLabSection = () => {
           href="https://x.com/shreyg258/highlights"
           target="_blank"
           rel="noopener noreferrer"
-          className="group flex md:hidden items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 backdrop-blur-sm"
+          className="group flex md:hidden items-center gap-2 px-4 py-2 mt-8 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 backdrop-blur-sm"
         >
           <span className="text-sm font-medium text-white/90">
             Check out more on
