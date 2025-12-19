@@ -13,7 +13,7 @@ const Home = () => {
       <TopoBackground />
 
       {/* 2. The Content Grid */}
-      <main className="w-full max-w-[1200px] mx-auto px-6 py-20 grid grid-cols-1 lg:grid-cols-12 gap-6 relative z-10">
+      <main className="w-full max-w-[1200px] mx-auto px-6 py-20 grid grid-cols-1 lg:grid-cols-12 gap-x-6 gap-y-10 relative z-10">
         {/* Identity Section - Full Width */}
         <div className="col-span-1 lg:col-span-12">
           <IdentityCard />
