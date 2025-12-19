@@ -1,5 +1,7 @@
 import { ExternalLink, FileText } from "lucide-react";
+import SectionHeader from "../components/SectionHeader";
 import TagPill from "../components/TagPill";
+import GlassLinkCard from "../components/GlassLinkCard";
 
 const WritingSection = () => {
   const articles = [
@@ -13,28 +15,24 @@ const WritingSection = () => {
 
   return (
     <section className="w-full">
-      <div className="flex items-center gap-3 mb-6">
-        <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-white/80">
-          <FileText size={18} />
-        </div>
-        <div className="flex flex-col">
-          <span className="text-sm font-mono uppercase tracking-[0.25em] text-white/50">
-            Writing
-          </span>
-          <span className="text-lg font-semibold text-white">
-            Blogs & Deep Dives
-          </span>
-        </div>
-      </div>
+      <SectionHeader
+        label="Writing"
+        subLabel="Blogs & Deep Dives"
+        className="mb-6"
+        labelClassName="text-base font-mono text-white/50 tracking-widest uppercase whitespace-nowrap"
+        subLabelClassName="text-lg font-semibold text-white"
+        showDivider={false}
+        icon={<FileText size={16} className="text-white/60" />}
+        iconWrapperClassName="p-2.5 rounded-xl bg-white/5 border border-white/10 text-white/80"
+      />
 
       <div className="grid grid-cols-1 gap-4">
         {articles.map((article) => (
-          <a
+          <GlassLinkCard
             key={article.url}
             href={article.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/3 p-5 hover:border-white/25 transition-all duration-300"
           >
             <div className="absolute inset-0 bg-linear-to-r from-white/5 via-transparent to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
             <div className="flex items-start justify-between gap-3">
@@ -53,7 +51,7 @@ const WritingSection = () => {
               </div>
               <ExternalLink className="text-white/50 group-hover:text-white transition-colors duration-300 shrink-0 mt-1" size={18} />
             </div>
-          </a>
+          </GlassLinkCard>
         ))}
       </div>
     </section>
