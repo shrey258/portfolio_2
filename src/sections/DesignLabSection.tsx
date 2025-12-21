@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import LiquidGlassCard from "../components/LiquidGlassCard";
 import {
   Smartphone,
@@ -29,6 +29,56 @@ interface DesignItem {
   size: "large" | "medium" | "small";
   video: string;
 }
+
+const LazyLoopingVideo = ({
+  src,
+  className,
+  shouldReduceMotion,
+}: {
+  src: string;
+  className?: string;
+  shouldReduceMotion: boolean;
+}) => {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [shouldRender, setShouldRender] = useState(false);
+
+  useEffect(() => {
+    if (shouldRender) return;
+    const node = containerRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setShouldRender(true);
+        }
+      },
+      { root: null, rootMargin: "300px", threshold: 0.01 }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [shouldRender]);
+
+  return (
+    <div
+      ref={containerRef}
+      className="w-full h-full flex items-center justify-center"
+    >
+      {shouldRender ? (
+        <video
+          src={src}
+          autoPlay={!shouldReduceMotion}
+          loop
+          muted
+          playsInline
+          preload="none"
+          className={className}
+        />
+      ) : null}
+    </div>
+  );
+};
 
 const designs: DesignItem[] = [
   // Row 1: Square, Square, Rectangle
@@ -85,7 +135,7 @@ const designs: DesignItem[] = [
 ];
 
 const DesignLabSection = () => {
-  const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = !!useReducedMotion();
   const easing = useMemo(() => cubicBezier(0.165, 0.84, 0.44, 1), []);
 
   const createReveal = (delay = 0): MotionProps => {
@@ -168,24 +218,18 @@ const DesignLabSection = () => {
             >
               {/* 1. Ambient Background (Blurred fill) */}
               <div className="absolute inset-0 bg-black/50 z-0">
-                <video
+                <LazyLoopingVideo
                   src={design.video}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
+                  shouldReduceMotion={shouldReduceMotion}
                   className="w-full h-full object-cover opacity-30 group-hover:opacity-60 blur-xl scale-110 transition-all duration-700 group-hover:saturate-200"
                 />
               </div>
 
               {/* 2. Actual Video (Contained, no cropping) */}
               <div className="absolute inset-0 z-0 flex items-center justify-center p-4">
-                <video
+                <LazyLoopingVideo
                   src={design.video}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
+                  shouldReduceMotion={shouldReduceMotion}
                   className="max-w-full max-h-full object-contain grayscale group-hover:grayscale-0 group-hover:saturate-125 opacity-80 group-hover:opacity-100 transition-all duration-700 ease-out drop-shadow-2xl rounded-xl"
                 />
               </div>
