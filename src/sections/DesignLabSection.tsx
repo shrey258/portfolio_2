@@ -14,12 +14,12 @@ import { motion, useReducedMotion, cubicBezier } from "motion/react";
 import type { MotionProps, Variants } from "motion/react";
 
 // Import Video Assets
-import printVideo from "../assets/Print Animation.mov";
-import reflectionVideo from "../assets/Refraction Animation.mov";
-import xrayVideo from "../assets/Xray Animation.mov";
-import profileVideo from "../assets/Profile Card Animation.mov";
-import loginVideo from "../assets/Liquidglass Login.mov";
-import paparazziVideo from "../assets/Paparazzi Loader.mov";
+import printVideo from "../assets/Print Animation.mp4";
+import reflectionVideo from "../assets/Refraction Animation.mp4";
+import xrayVideo from "../assets/Xray Animation.mp4";
+import profileVideo from "../assets/Profile Card Animation.mp4";
+import loginVideo from "../assets/Liquidglass Login.mp4";
+import paparazziVideo from "../assets/Paparazzi Loader.mp4";
 
 interface DesignItem {
   id: string;
@@ -40,7 +40,10 @@ const LazyLoopingVideo = ({
   shouldReduceMotion: boolean;
 }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   const [shouldRender, setShouldRender] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [backdrop, setBackdrop] = useState<string | null>(null);
 
   useEffect(() => {
     if (shouldRender) return;
@@ -63,17 +66,60 @@ const LazyLoopingVideo = ({
   return (
     <div
       ref={containerRef}
-      className="w-full h-full flex items-center justify-center"
+      className="relative w-full h-full flex items-center justify-center"
     >
+      <div
+        className="absolute inset-0 opacity-55 blur-xl scale-110 transition-opacity duration-500 ease-out"
+        style={
+          backdrop
+            ? {
+                backgroundImage: `url(${backdrop})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }
+            : {
+                background:
+                  "radial-gradient(circle at 30% 20%, rgba(255,255,255,0.10), transparent 55%), radial-gradient(circle at 60% 70%, rgba(168,85,247,0.18), transparent 55%)",
+              }
+        }
+      />
       {shouldRender ? (
         <video
+          ref={videoRef}
           src={src}
           autoPlay={!shouldReduceMotion}
           loop
           muted
           playsInline
           preload="none"
-          className={className}
+          onLoadedData={() => {
+            setIsLoaded(true);
+
+            if (backdrop) return;
+            const v = videoRef.current;
+            if (!v) return;
+            if (!v.videoWidth || !v.videoHeight) return;
+
+            const targetW = 96;
+            const scale = targetW / v.videoWidth;
+            const w = Math.max(1, Math.round(v.videoWidth * scale));
+            const h = Math.max(1, Math.round(v.videoHeight * scale));
+
+            const canvas = document.createElement("canvas");
+            canvas.width = w;
+            canvas.height = h;
+
+            const ctx = canvas.getContext("2d");
+            if (!ctx) return;
+            ctx.drawImage(v, 0, 0, w, h);
+
+            try {
+              setBackdrop(canvas.toDataURL("image/jpeg", 0.6));
+            } catch {
+              // Ignore snapshot failures (rare) and keep the gradient fallback.
+            }
+          }}
+          className={`${className ?? ""} ${isLoaded ? "opacity-100" : "opacity-0"} relative z-10`}
         />
       ) : null}
     </div>
@@ -216,16 +262,7 @@ const DesignLabSection = () => {
                 hover:border-white/30 transition-all duration-500
               `}
             >
-              {/* 1. Ambient Background (Blurred fill) */}
-              <div className="absolute inset-0 bg-black/50 z-0">
-                <LazyLoopingVideo
-                  src={design.video}
-                  shouldReduceMotion={shouldReduceMotion}
-                  className="w-full h-full object-cover opacity-30 group-hover:opacity-60 blur-xl scale-110 transition-all duration-700 group-hover:saturate-200"
-                />
-              </div>
-
-              {/* 2. Actual Video (Contained, no cropping) */}
+              {/* Video (Contained, no cropping) */}
               <div className="absolute inset-0 z-0 flex items-center justify-center p-4">
                 <LazyLoopingVideo
                   src={design.video}
