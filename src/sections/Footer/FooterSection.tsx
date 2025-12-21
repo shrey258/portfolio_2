@@ -59,13 +59,13 @@ const FooterSection = () => {
                   Book a call
                 </a>
                 <a
-                  href="https://cal.com/shreyansh"
+                  href="https://drive.google.com/file/d/1zp4HhCNCRpIgsyz2kMiMapIPzv7QtSgu/view?usp=sharing"
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-3 text-sm text-white/80 transition-colors hover:border-white hover:text-white"
                 >
                   <ArrowUpRight size={16} />
-                  Latest case studies
+                  Resume
                 </a>
               </div>
             </div>
