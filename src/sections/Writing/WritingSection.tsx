@@ -29,7 +29,7 @@ const WritingSection = () => {
   ];
 
   return (
-    <section className="w-full">
+    <section className="w-full" id="writing">
       <motion.div {...createReveal(0)}>
         <SectionHeader
           label="Writing"

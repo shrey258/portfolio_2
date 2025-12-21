@@ -128,7 +128,7 @@ const DesignLabSection = () => {
   };
 
   return (
-    <div className="w-full flex flex-col gap-6 py-24">
+    <div className="w-full flex flex-col gap-6 py-24" id="design-lab">
       <motion.div {...createReveal(0.05)}>
         <SectionHeader
           label="Design Lab"

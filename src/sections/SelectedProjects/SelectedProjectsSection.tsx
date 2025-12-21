@@ -19,7 +19,7 @@ const SelectedProjectsSection = () => {
   };
 
   return (
-    <section className="h-full">
+    <section className="h-full" id="selected-projects">
       <motion.div {...createReveal(0)}>
         <SectionHeader
           label="Selected Projects"
