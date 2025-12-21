@@ -79,7 +79,7 @@ const IdentityCard = () => {
 
           {/* Main Info */}
           <div className="flex-1 min-w-0">
-            <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-2 font-sans">
+            <h1 className="font-display-serif text-5xl md:text-6xl text-white tracking-tight mb-2">
               Shreyansh Gupta
             </h1>
             <h2 className="text-lg font-mono text-white/60 mb-6 flex items-center gap-3">

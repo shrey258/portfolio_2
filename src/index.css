@@ -1,5 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&display=swap");
 @import "tailwindcss";
 
+:root {
+  --font-display-serif: "Instrument Serif", "Times New Roman", serif;
+}
+
+/* stylelint-disable-next-line */
 @theme {
   --animate-scan: scan 2s linear infinite;
   
@@ -7,6 +13,10 @@
     0% { transform: translateY(-100%); }
     100% { transform: translateY(100%); }
   }
+}
+
+.font-display-serif {
+  font-family: var(--font-display-serif);
 }
 
 /* CSS reset and base styles can go here */
