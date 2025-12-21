@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import { motion, useReducedMotion, cubicBezier } from "motion/react";
+import type { MotionProps, Variants } from "motion/react";
 import { ArrowLeft, Clock, Layers } from "lucide-react"; // Added icons
 import { Link } from "react-router-dom";
 import TopoBackground from "../components/TopoBackground";
@@ -10,6 +12,35 @@ const ExperiencePage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const shouldReduceMotion = useReducedMotion();
+  const easing = cubicBezier(0.165, 0.84, 0.44, 1);
+
+  const createReveal = (delay = 0): MotionProps => {
+    if (shouldReduceMotion) return { initial: false };
+    return {
+      initial: { opacity: 0, y: 18 },
+      whileInView: { opacity: 1, y: 0 },
+      viewport: { once: true, amount: 0.35 },
+      transition: { duration: 0.35, ease: easing, delay },
+    };
+  };
+
+  const gridVariants: Variants = {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: 0.08 },
+    },
+  };
+
+  const cardVariants: Variants = {
+    hidden: { opacity: 0, y: 16 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.3, ease: easing },
+    },
+  };
 
   return (
     <div
@@ -39,6 +70,7 @@ const ExperiencePage = () => {
       >
         {/* HEADER SECTION */}
         <div>
+          <motion.div {...createReveal(0)}>
           <Link
             to="/"
             style={{
@@ -58,26 +90,28 @@ const ExperiencePage = () => {
             onMouseLeave={(e) =>
               (e.currentTarget.style.color = "rgba(255, 255, 255, 0.4)")
             }
-          >
-            <ArrowLeft size={16} />
-            BACK TO HOME
-          </Link>
+            >
+              <ArrowLeft size={16} />
+              BACK TO HOME
+            </Link>
 
-          <h1
-            style={{
-              fontSize: "32px",
-              fontWeight: "700",
-              color: "#fff",
-              fontFamily: "Inter, sans-serif",
-              margin: "0 0 24px 0",
-              letterSpacing: "-0.02em",
-            }}
-          >
-            Engineering Log
-          </h1>
+            <h1
+              style={{
+                fontSize: "32px",
+                fontWeight: "700",
+                color: "#fff",
+                fontFamily: "Inter, sans-serif",
+                margin: "0 0 24px 0",
+                letterSpacing: "-0.02em",
+              }}
+            >
+              Engineering Log
+            </h1>
+          </motion.div>
 
           {/* NEW: DASHBOARD META HEADER */}
-          <div
+          <motion.div
+            {...createReveal(0.1)}
             style={{
               display: "flex",
               gap: "32px",
@@ -139,11 +173,15 @@ const ExperiencePage = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* BENTO GRID */}
-        <div
+        <motion.div
+          variants={gridVariants}
+          initial={shouldReduceMotion ? false : "hidden"}
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
           style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
@@ -152,7 +190,7 @@ const ExperiencePage = () => {
           }}
         >
           {/* 1. GOMINI - Flagship */}
-          <div style={{ gridColumn: "span 2" }}>
+          <motion.div style={{ gridColumn: "span 2" }} variants={cardVariants}>
             <WorkCard
               title="Gomini"
               role="Founding Engineer (Lead Mobile)"
@@ -161,10 +199,10 @@ const ExperiencePage = () => {
               tags={["React Native", "Reanimated", "Supabase", "Mobile Arch"]}
               variant="full"
             />
-          </div>
+          </motion.div>
 
           {/* 2. FLEEK.XYZ - Flagship */}
-          <div style={{ gridColumn: "span 2" }}>
+          <motion.div style={{ gridColumn: "span 2" }} variants={cardVariants}>
             <WorkCard
               title="Fleek.xyz"
               role="Frontend Engineer (Contract)"
@@ -173,10 +211,10 @@ const ExperiencePage = () => {
               tags={["Tauri", "Rust/C++", "Cloudflare R2", "Next.js"]}
               variant="full"
             />
-          </div>
+          </motion.div>
 
           {/* 3. SUBSCART - Compact */}
-          <div style={{ gridColumn: "span 1" }}>
+          <motion.div style={{ gridColumn: "span 1" }} variants={cardVariants}>
             <WorkCard
               title="Subscart"
               role="Software Eng."
@@ -185,10 +223,10 @@ const ExperiencePage = () => {
               tags={["Optimistic UI", "Node.js"]}
               variant="compact"
             />
-          </div>
+          </motion.div>
 
           {/* 4. IOTREE MINDS - Compact */}
-          <div style={{ gridColumn: "span 1" }}>
+          <motion.div style={{ gridColumn: "span 1" }} variants={cardVariants}>
             <WorkCard
               title="Iotree Minds"
               role="Mobile Eng."
@@ -197,22 +235,24 @@ const ExperiencePage = () => {
               tags={["API Integration", "UX Revamp"]}
               variant="compact"
             />
-          </div>
+          </motion.div>
 
-          <TerminalCard
-            title="IIT Madras"
-            role="Research Intern"
-            date="2023 - 2024 (Periodic)"
-            fileName="research_logs.py"
-            badgeText="READ ONLY"
-            bullets={[
-              "Created a 1 Gbps Python network speed test server.",
-              "Variance maintained below 5%.",
-              "Deployed cross-platform app with sub-second latency.",
-            ]}
-            tags={["Python", "Networking", "High_Performance"]}
-          />
-        </div>
+          <motion.div variants={cardVariants}>
+            <TerminalCard
+              title="IIT Madras"
+              role="Research Intern"
+              date="2023 - 2024 (Periodic)"
+              fileName="research_logs.py"
+              badgeText="READ ONLY"
+              bullets={[
+                "Created a 1 Gbps Python network speed test server.",
+                "Variance maintained below 5%.",
+                "Deployed cross-platform app with sub-second latency.",
+              ]}
+              tags={["Python", "Networking", "High_Performance"]}
+            />
+          </motion.div>
+        </motion.div>
       </main>
     </div>
   );
