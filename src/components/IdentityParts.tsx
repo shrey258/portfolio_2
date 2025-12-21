@@ -1,18 +1,72 @@
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
+import { animate } from "motion";
+import { cubicBezier, useReducedMotion } from "motion/react";
 
 interface StatItemProps {
   value: string;
   label: string;
+  animate?: boolean;
+  delay?: number;
 }
 
-export const StatItem = ({ value, label }: StatItemProps) => (
-  <div>
-    <div className="text-2xl font-bold text-white font-sans">{value}</div>
-    <div className="text-[10px] uppercase tracking-wider text-white/40 font-mono mt-1">
-      {label}
+export const StatItem = ({
+  value,
+  label,
+  animate: shouldAnimate = false,
+  delay = 0,
+}: StatItemProps) => {
+  const [displayValue, setDisplayValue] = useState(value);
+  const prefersReducedMotion = useReducedMotion();
+  const easing = useMemo(() => cubicBezier(0.19, 1, 0.22, 1), []);
+
+  const segments = useMemo(() => {
+    const match = value.match(/-?\d+(\.\d+)?/);
+    if (!match || match.index === undefined) return null;
+    const numeric = parseFloat(match[0]);
+    return {
+      prefix: value.slice(0, match.index),
+      suffix: value.slice(match.index + match[0].length),
+      number: numeric,
+      decimals: match[0].includes(".")
+        ? match[0].split(".")[1].length
+        : 0,
+    };
+  }, [value]);
+
+  const shouldRunAnimation =
+    !!segments && shouldAnimate && !prefersReducedMotion;
+
+  useEffect(() => {
+    if (!shouldRunAnimation || !segments) {
+      return;
+    }
+
+    const controls = animate(0, segments.number, {
+      duration: 1,
+      delay: delay + 0.2,
+      ease: easing,
+      onUpdate: (latest) => {
+        const formatted = segments.decimals
+          ? latest.toFixed(segments.decimals)
+          : Math.round(latest).toString();
+        setDisplayValue(`${segments.prefix}${formatted}${segments.suffix}`);
+      },
+    });
+
+    return () => controls.stop();
+  }, [shouldRunAnimation, segments, delay, easing]);
+
+  return (
+    <div>
+      <div className="text-2xl font-bold text-white font-sans tabular-nums">
+        {shouldRunAnimation ? displayValue : value}
+      </div>
+      <div className="text-[10px] uppercase tracking-wider text-white/40 font-mono mt-1">
+        {label}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 interface InfoPillProps {
   icon: React.ReactNode;

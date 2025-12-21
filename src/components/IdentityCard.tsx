@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { motion, useReducedMotion, cubicBezier } from "motion/react";
+import type { MotionProps } from "motion/react";
 import LiquidGlassCard from "./LiquidGlassCard";
 import TechArsenalGrid from "./TechArsenalGrid";
 import { StatItem, InfoPill, SocialButton } from "./IdentityParts";
@@ -12,6 +14,35 @@ import {
 
 const IdentityCard = () => {
   const [time, setTime] = useState<string>("");
+  const shouldReduceMotion = useReducedMotion();
+  const easing = cubicBezier(0.165, 0.84, 0.44, 1);
+
+  const createReveal = (
+    delay = 0,
+    options?: { scale?: boolean }
+  ): MotionProps => {
+    if (shouldReduceMotion) {
+      return { initial: false };
+    }
+
+    return {
+      initial: {
+        opacity: 0,
+        y: 18,
+        scale: options?.scale ? 0.96 : 1,
+      },
+      animate: {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+      },
+      transition: {
+        duration: 0.35,
+        ease: easing,
+        delay,
+      },
+    };
+  };
 
   useEffect(() => {
     const updateTime = () => {
@@ -39,7 +70,10 @@ const IdentityCard = () => {
       {/* Content Container */}
       <div className="relative z-10 p-8 md:p-10 w-full flex flex-col gap-8">
         {/* 1. Header HUD */}
-        <div className="flex flex-wrap justify-between items-center gap-4 border-b border-white/5 pb-6 w-full">
+        <motion.div
+          className="flex flex-wrap justify-between items-center gap-4 border-b border-white/5 pb-6 w-full"
+          {...createReveal(0.45)}
+        >
           <div className="flex items-center gap-3 px-4 py-2 rounded-full bg-black/30 border border-white/10">
             <div className="w-2.5 h-2.5 rounded-full bg-green-400 shadow-[0_0_8px_rgba(74,222,128,1)]" />
             <span className="text-sm text-white/90 font-medium font-sans drop-shadow-[0_0_10px_rgba(74,222,128,0.5)]">
@@ -57,7 +91,7 @@ const IdentityCard = () => {
               text="Darjeeling, IN"
             />
           </div>
-        </div>
+        </motion.div>
 
         {/* 2. Identity Section */}
         <div className="flex flex-col md:flex-row gap-8 items-start w-full">
@@ -78,7 +112,10 @@ const IdentityCard = () => {
           </div>
 
           {/* Main Info */}
-          <div className="flex-1 min-w-0">
+          <motion.div
+            className="flex-1 min-w-0"
+            {...createReveal(0, { scale: true })}
+          >
             <h1 className="font-display-serif text-5xl md:text-6xl text-white tracking-tight mb-2">
               Shreyansh Gupta
             </h1>
@@ -103,19 +140,24 @@ const IdentityCard = () => {
                 Gomini
               </a>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* 3. Tech Arsenal Grid */}
-        <TechArsenalGrid />
+        <motion.div {...createReveal(0.15)}>
+          <TechArsenalGrid />
+        </motion.div>
 
         {/* 4. Stats & Actions Row */}
-        <div className="flex flex-col md:flex-row justify-between items-end gap-6 w-full pt-2 border-t border-white/5">
+        <motion.div
+          className="flex flex-col md:flex-row justify-between items-end gap-6 w-full pt-2 border-t border-white/5"
+          {...createReveal(0.3)}
+        >
           {/* Left: Stats */}
           <div className="flex gap-8">
-            <StatItem value="5+" label="Startups" />
-            <StatItem value="15+" label="Projects" />
-            <StatItem value="100%" label="Commitment" />
+            <StatItem value="5+" label="Startups" animate delay={0.45} />
+            <StatItem value="15+" label="Projects" animate delay={0.55} />
+            <StatItem value="100%" label="Commitment" animate delay={0.65} />
           </div>
 
           {/* Right: Actions */}
@@ -144,7 +186,7 @@ const IdentityCard = () => {
               />
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </LiquidGlassCard>
   );
