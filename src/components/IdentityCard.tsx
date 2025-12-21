@@ -131,7 +131,7 @@ const IdentityCard = () => {
               with creative fluidity.
             </p>
 
-            <div className="mt-6 flex items-center gap-2 text-sm text-white/50 font-mono">
+            {/* <div className="mt-6 flex items-center gap-2 text-sm text-white/50 font-mono">
               <span>Building at:</span>
               <a
                 href="https://gomini.in"
@@ -139,7 +139,7 @@ const IdentityCard = () => {
               >
                 Gomini
               </a>
-            </div>
+            </div> */}
           </motion.div>
         </div>
 

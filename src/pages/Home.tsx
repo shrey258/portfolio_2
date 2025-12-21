@@ -4,6 +4,7 @@ import EngineeringLogSection from '../sections/Engineering Log/EngineeringLogSec
 import SelectedProjectsSection from '../sections/SelectedProjects/SelectedProjectsSection';
 import DesignLabSection from '../sections/DesignLabSection';
 import WritingSection from '../sections/Writing/WritingSection';
+import FooterSection from '../sections/Footer/FooterSection';
 
 const Home = () => {
   return (
@@ -37,6 +38,11 @@ const Home = () => {
         {/* Writing - Full Width */}
         <div className="col-span-1 lg:col-span-12">
           <WritingSection />
+        </div>
+
+        {/* Footer */}
+        <div className="col-span-1 lg:col-span-12">
+          <FooterSection />
         </div>
       </main>
     </div>
