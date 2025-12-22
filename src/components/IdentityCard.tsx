@@ -68,20 +68,20 @@ const IdentityCard = () => {
       <div className="absolute bottom-0 left-0 w-[200px] h-[200px] bg-blue-500/10 blur-[80px] rounded-full pointer-events-none" />
 
       {/* Content Container */}
-      <div className="relative z-10 p-8 md:p-10 w-full flex flex-col gap-8">
+      <div className="relative z-10 w-full flex flex-col gap-8 p-6 sm:p-8 lg:p-10">
         {/* 1. Header HUD */}
         <motion.div
-          className="flex flex-wrap justify-between items-center gap-4 border-b border-white/5 pb-6 w-full"
+          className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between border-b border-white/5 pb-6 w-full"
           {...createReveal(0.45)}
         >
-          <div className="flex items-center gap-3 px-4 py-2 rounded-full bg-black/30 border border-white/10">
+          <div className="flex w-full items-center justify-center gap-3 px-4 py-2 rounded-full bg-black/30 border border-white/10 sm:w-auto sm:justify-start">
             <div className="w-2.5 h-2.5 rounded-full bg-green-400 shadow-[0_0_8px_rgba(74,222,128,1)]" />
             <span className="text-sm text-white/90 font-medium font-sans drop-shadow-[0_0_10px_rgba(74,222,128,0.5)]">
               Open to New Roles
             </span>
           </div>
 
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:justify-end sm:gap-6 w-full sm:w-auto">
             <InfoPill
               icon={<Globe size={12} className="text-white/50" />}
               text={`IST ${time}`}
@@ -116,16 +116,16 @@ const IdentityCard = () => {
             className="flex-1 min-w-0"
             {...createReveal(0, { scale: true })}
           >
-            <h1 className="font-display-serif text-5xl md:text-6xl text-white tracking-tight mb-2">
+            <h1 className="font-display-serif text-4xl sm:text-5xl md:text-6xl text-white tracking-tight mb-2">
               Shreyansh Gupta
             </h1>
-            <h2 className="text-lg font-mono text-white/60 mb-6 flex items-center gap-3">
+            <h2 className="text-base sm:text-lg font-mono text-white/60 mb-6 flex flex-wrap items-center gap-3">
               <span className="text-purple-400">&lt;DesignEngineer /&gt;</span>
               <span className="w-1 h-1 rounded-full bg-white/20" />
               <span className="text-blue-400">FullStack.Dev</span>
             </h2>
 
-            <p className="text-white/80 leading-relaxed max-w-xl font-sans text-base">
+            <p className="text-white/80 leading-relaxed max-w-xl font-sans text-sm sm:text-base">
               Architecting high-performance mobile ecosystems and crafting
               pixel-perfect web design systems. Merging engineering precision
               with creative fluidity.
@@ -150,28 +150,28 @@ const IdentityCard = () => {
 
         {/* 4. Stats & Actions Row */}
         <motion.div
-          className="flex flex-col md:flex-row justify-between items-end gap-6 w-full pt-2 border-t border-white/5"
+          className="flex flex-col md:flex-row justify-between items-stretch md:items-end gap-6 w-full pt-2 border-t border-white/5"
           {...createReveal(0.3)}
         >
           {/* Left: Stats */}
-          <div className="flex gap-8">
+          <div className="flex flex-wrap gap-6 w-full">
             <StatItem value="5+" label="Startups" animate delay={0.45} />
             <StatItem value="15+" label="Projects" animate delay={0.55} />
             <StatItem value="100%" label="Commitment" animate delay={0.65} />
           </div>
 
           {/* Right: Actions */}
-          <div className="flex gap-3 w-full md:w-auto">
+          <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
             <button
               onClick={() =>
                 window.open("mailto:gshrey258@gmail.com", "_blank")
               }
-              className="flex-1 md:flex-none px-6 h-12 rounded-xl bg-white text-black font-semibold flex items-center justify-center gap-2 hover:bg-gray-200 transition-colors cursor-pointer"
+              className="w-full sm:w-auto px-6 h-12 rounded-xl bg-white text-black font-semibold flex items-center justify-center gap-2 hover:bg-gray-200 transition-colors cursor-pointer"
             >
               <Mail size={18} />
               <span>Connect</span>
             </button>
-            <div className="flex gap-2">
+            <div className="flex gap-2 justify-center sm:justify-start">
               <SocialButton
                 icon={<Github size={20} />}
                 onClick={() =>
