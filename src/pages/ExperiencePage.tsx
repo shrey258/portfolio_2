@@ -169,7 +169,7 @@ const ExperiencePage = () => {
                     fontFamily: "Inter, sans-serif",
                   }}
                 >
-                  5 Positions
+                  6 Positions
                 </div>
               </div>
             </div>
@@ -189,7 +189,19 @@ const ExperiencePage = () => {
             width: "100%",
           }}
         >
-          {/* 1. GOMINI - Flagship */}
+          {/* 1. VIBECODE - Flagship */}
+          <motion.div style={{ gridColumn: "span 2" }} variants={cardVariants}>
+            <WorkCard
+              title="Vibecode"
+              role="Forward-Deployed Engineer (Not A Number Labs)"
+              date="Mar 2026 - Present"
+              description="Lead triage and resolution of customer-reported production incidents, debugging live environments to minimize downtime. Serve as the technical bridge between end-users and the core engineering team — managing direct customer communication while collaborating to ship bug fixes and new features based on real-world feedback."
+              tags={["Production Debug", "Customer Engineering", "Feature Dev", "Technical Support"]}
+              variant="full"
+            />
+          </motion.div>
+
+          {/* 2. GOMINI - Flagship */}
           <motion.div style={{ gridColumn: "span 2" }} variants={cardVariants}>
             <WorkCard
               title="Gomini"

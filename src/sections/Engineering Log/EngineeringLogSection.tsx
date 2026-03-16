@@ -57,14 +57,14 @@ const EngineeringLogSection = () => {
         viewport={{ once: true, amount: 0.4 }}
       >
         
-        {/* 1. Gomini */}
+        {/* 1. Vibecode */}
         <motion.div variants={itemVariants}>
-          <WorkCard 
-            title="Gomini"
-            role="Founding Engineer (Lead Mobile)"
-            date="2025"
-            description="Solely architected the 0-to-1 mobile platform enabling 100% of digital sales. Designed a native-grade UX with Shared Element Transitions."
-            tags={['React Native', 'Reanimated', 'Supabase']}
+          <WorkCard
+            title="Vibecode"
+            role="Forward-Deployed Engineer"
+            date="2026"
+            description="Triage and resolve production incidents for customers. Serve as the bridge between end-user needs and the core engineering team, shipping fixes and features based on real-world feedback."
+            tags={['Production Debug', 'Customer Eng.', 'Feature Dev']}
             variant="compact"
           />
         </motion.div>
@@ -103,7 +103,7 @@ const EngineeringLogSection = () => {
                 View Full Archive
               </span>
               <span className="text-[13px] text-[#666]">
-                Including Subscart, Iotree Minds & IIT Madras
+                Including Gomini, Subscart, Iotree Minds & IIT Madras
               </span>
             </div>
           </div>
