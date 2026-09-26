@@ -13,16 +13,11 @@ No test framework is configured.
 
 ## Architecture
 
-React 19 + TypeScript SPA using Vite, Tailwind CSS v4 (via `@tailwindcss/vite` plugin), and react-router-dom for client-side routing. Deployed on Vercel with SPA fallback rewrites in `vercel.json`.
+React 19 + TypeScript single page (Vite, Tailwind CSS v4). No router: `/experience` is redirected to `/#work` in `src/main.tsx`; Vercel rewrites everything to `index.html`.
 
-**Routing** (`src/App.tsx`): Two routes — `/` (Home) and `/experience` (ExperiencePage). Uses `BrowserRouter`. Vercel Analytics is included at the router level.
+- `src/data/profile.ts`: all copy (roles, projects, lab clips, stack, stats). It mirrors the private `portfolio.md` in `~/Documents/resume`; change copy there first, then here. Only use claims and numbers listed there.
+- `src/App.tsx`: the whole page, plus `Section`, `LabVideo` (plays only while on screen, respects reduced motion) and `LocalTime`.
+- `src/index.css`: color tokens in OKLCH (warm paper/ink, Darjeeling tea-green accent) with a dark theme via `prefers-color-scheme`, exposed to Tailwind through `@theme inline`.
+- `public/lab/`: re-encoded clips (H.264, faststart, no audio) and `.webp` posters. `public/fonts/`: self-hosted Instrument Serif, preloaded in `index.html`. `public/og.png`: social card.
 
-**Pages** (`src/pages/`): `Home.tsx` composes the main page from sections in a 12-column grid layout. `ExperiencePage.tsx` is a standalone detail page for work history.
-
-**Sections** (`src/sections/`): Each major homepage block (Engineering Log, Selected Projects, Writing, Footer, DesignLab) lives in its own folder under `src/sections/` with section-specific sub-components in a `components/` subfolder.
-
-**Shared components** (`src/components/`): Reusable UI pieces — `IdentityCard`, `TopoBackground` (fixed canvas background), `LiquidGlassCard`, `TerminalCard`, `TagPill`, `CtaPill`, `SectionHeader`, `TechArsenalGrid`.
-
-**Animation**: Uses `motion` (Framer Motion v12+) extensively with `useReducedMotion` support. Animations use `whileInView` reveal patterns with staggered children.
-
-**Styling**: Mix of Tailwind utility classes and inline `style` objects. Global styles in `src/index.css` and `src/App.css`. Font: Inter (system) + Instrument Serif (Google Fonts, loaded in `index.html`).
+Design rules: no glass, glows, gradients or scroll-triggered fades. Hover styles only under `(hover: hover)`; name transition properties, never `transition: all`.

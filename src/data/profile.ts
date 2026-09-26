@@ -148,3 +148,21 @@ export const writing = [
     href: "https://reactnativecomponents.com/articles/building-a-receipt-printer-animation-in-react-native",
   },
 ];
+
+export type LabItem = {
+  title: string;
+  tech: string;
+  src: string;
+  width: number;
+  height: number;
+};
+
+// Phone-sized clips first, then the two wide ones; the layout follows their shape.
+export const lab: LabItem[] = [
+  { title: "Receipt printer", tech: "Reanimated", src: "receipt", width: 540, height: 1174 },
+  { title: "Liquid glass login", tech: "Reanimated", src: "login", width: 540, height: 1174 },
+  { title: "Water reflection", tech: "Expo", src: "reflection", width: 540, height: 1174 },
+  { title: "Paparazzi loader", tech: "CSS keyframes", src: "paparazzi", width: 540, height: 1174 },
+  { title: "Profile card", tech: "Motion", src: "profile-card", width: 1280, height: 830 },
+  { title: "X-ray", tech: "Pure CSS", src: "xray", width: 1280, height: 838 },
+];
