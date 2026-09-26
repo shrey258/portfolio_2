@@ -14,13 +14,8 @@ export const profile = {
   xHighlights: "https://x.com/shreyg258/highlights",
   cal: "https://cal.com/shrey258/15min",
   resume: "/Shreyansh_Gupta_Resume.pdf",
+  portrait: "/portrait.webp",
 };
-
-export const stats = [
-  { value: "131", label: "Merged PRs at Vibecode" },
-  { value: "7", label: "LLMs shipped to prod" },
-  { value: "5", label: "Startups" },
-];
 
 export type Role = {
   company: string;
@@ -38,7 +33,7 @@ export const roles: Role[] = [
     title: "Software Engineer",
     dates: "Feb – Sep 2026",
     summary:
-      "The mobile app that builds mobile apps. Shipped across the app, a Go routing proxy and the agent sandbox.",
+      "The mobile app that builds mobile apps. 131 merged PRs across the app, a Go routing proxy and the agent sandbox.",
     highlights: [
       "Shipped 7 LLMs end to end (Opus 5, Fable 5.1, GPT-6 Astra, GLM 5.3, Grok 4.6…): picker, Go routing + per-token pricing, sandbox image.",
       "Billing: card-required trials that auto-convert, a 7-day downgrade grace period, auto-reload tiers.",
