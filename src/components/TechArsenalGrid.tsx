@@ -1,28 +1,14 @@
 import { Terminal, Smartphone, Cpu, Palette } from "lucide-react";
+import { stack } from "../data/profile";
 
 const TechArsenalGrid = () => {
-  const techStack = [
-    {
-      category: "Core",
-      items: ["TypeScript", "C++", "Python"],
-      icon: <Terminal size={14} className="text-purple-400" />,
-    },
-    {
-      category: "Frontend",
-      items: ["React", "Next.js", "Flutter", "React Native", "Expo"],
-      icon: <Smartphone size={14} className="text-blue-400" />,
-    },
-    {
-      category: "Backend",
-      items: ["Express.js", "FastAPI", "PostgreSQL"],
-      icon: <Cpu size={14} className="text-green-400" />,
-    },
-    {
-      category: "Design",
-      items: ["Tailwind CSS", "Rive", "Motion", "Reanimated", "System UI"],
-      icon: <Palette size={14} className="text-orange-400" />,
-    },
+  const icons = [
+    <Terminal size={14} className="text-purple-400" />,
+    <Smartphone size={14} className="text-blue-400" />,
+    <Cpu size={14} className="text-green-400" />,
+    <Palette size={14} className="text-orange-400" />,
   ];
+  const techStack = stack.map((s, i) => ({ category: s.group, items: s.items, icon: icons[i] }));
 
   return (
     <div className="w-full bg-black/20 rounded-xl p-1 border border-white/5">

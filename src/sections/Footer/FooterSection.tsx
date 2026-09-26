@@ -1,6 +1,7 @@
 import { Github, Linkedin, Mail, ArrowUpRight } from "lucide-react";
 import { motion, cubicBezier, useReducedMotion } from "motion/react";
 import type { MotionProps } from "motion/react";
+import { profile } from "../../data/profile";
 
 const footerLinks = [
   { label: "Experience", href: "/experience" },
@@ -39,14 +40,13 @@ const FooterSection = () => {
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
             <div className="flex-1">
               <p className="text-sm font-mono uppercase tracking-[0.35em] text-white/40 mb-3">
-                Let’s build something bold
+                Open to new roles
               </p>
               <h2 className="font-display-serif text-4xl md:text-5xl text-white leading-tight">
-                Available for forward-thinking teams & daring collabs.
+                Building something people use? Let's talk.
               </h2>
               <p className="text-white/70 mt-3 max-w-xl">
-                Crafting cinematic product experiences across web, mobile, and spatial surfaces.
-                Open to contracts, roles, and advisory work.
+                Product engineering across mobile, web and AI. Full-time roles and contracts.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <a
@@ -59,7 +59,7 @@ const FooterSection = () => {
                   Book a call
                 </a>
                 <a
-                  href="https://drive.google.com/file/d/1zp4HhCNCRpIgsyz2kMiMapIPzv7QtSgu/view?usp=sharing"
+                  href={profile.resume}
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-3 text-sm text-white/80 transition-colors hover:border-white hover:text-white"
@@ -87,7 +87,7 @@ const FooterSection = () => {
               </div>
               <div className="text-sm text-white/50">
                 <p className="uppercase tracking-[0.35em] font-mono text-xs mb-1">Status</p>
-                <p>Based in Darjeeling · Working remote · EST timezone</p>
+                <p>{profile.location} · Remote · {profile.hours}</p>
               </div>
             </div>
           </div>

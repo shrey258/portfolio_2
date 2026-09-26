@@ -4,6 +4,7 @@ import type { MotionProps } from "motion/react";
 import LiquidGlassCard from "./LiquidGlassCard";
 import TechArsenalGrid from "./TechArsenalGrid";
 import { StatItem, InfoPill, SocialButton } from "./IdentityParts";
+import { profile, stats } from "../data/profile";
 import {
   MapPin,
   Mail,
@@ -88,7 +89,7 @@ const IdentityCard = () => {
             />
             <InfoPill
               icon={<MapPin size={12} className="text-white/50" />}
-              text="Darjeeling, IN"
+              text={profile.location}
             />
           </div>
         </motion.div>
@@ -120,15 +121,11 @@ const IdentityCard = () => {
               Shreyansh Gupta
             </h1>
             <h2 className="text-base sm:text-lg font-mono text-white/60 mb-6 flex flex-wrap items-center gap-3">
-              <span className="text-purple-400">&lt;DesignEngineer /&gt;</span>
-              <span className="w-1 h-1 rounded-full bg-white/20" />
-              <span className="text-blue-400">FullStack.Dev</span>
+              <span className="text-purple-400">{profile.title}</span>
             </h2>
 
             <p className="text-white/80 leading-relaxed max-w-xl font-sans text-sm sm:text-base">
-              Architecting high-performance mobile ecosystems and crafting
-              pixel-perfect web design systems. Merging engineering precision
-              with creative fluidity.
+              {profile.tagline}
             </p>
 
             {/* <div className="mt-6 flex items-center gap-2 text-sm text-white/50 font-mono">
@@ -155,9 +152,9 @@ const IdentityCard = () => {
         >
           {/* Left: Stats */}
           <div className="flex flex-wrap gap-6 w-full">
-            <StatItem value="5+" label="Startups" animate delay={0.45} />
-            <StatItem value="15+" label="Projects" animate delay={0.55} />
-            <StatItem value="100%" label="Commitment" animate delay={0.65} />
+            {stats.map((s, i) => (
+              <StatItem key={s.label} value={s.value} label={s.label} animate delay={0.45 + i * 0.1} />
+            ))}
           </div>
 
           {/* Right: Actions */}

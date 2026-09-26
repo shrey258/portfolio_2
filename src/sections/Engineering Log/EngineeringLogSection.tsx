@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ArrowRight, Layers, NotebookPen } from "lucide-react"; // Added 'Layers' icon
 import SectionHeader from "../../components/SectionHeader";
 import WorkCard from "./components/WorkCard";
+import { roles } from "../../data/profile";
 import { motion, useReducedMotion, cubicBezier } from "motion/react";
 import type { MotionProps, Variants } from "motion/react";
 
@@ -57,29 +58,11 @@ const EngineeringLogSection = () => {
         viewport={{ once: true, amount: 0.4 }}
       >
         
-        {/* 1. Vibecode */}
-        <motion.div variants={itemVariants}>
-          <WorkCard
-            title="Vibecode"
-            role="Forward-Deployed Engineer"
-            date="2026"
-            description="Triage and resolve production incidents for customers. Serve as the bridge between end-user needs and the core engineering team, shipping fixes and features based on real-world feedback."
-            tags={['Production Debug', 'Customer Eng.', 'Feature Dev']}
-            variant="compact"
-          />
-        </motion.div>
-
-        {/* 2. Fleek.xyz */}
-        <motion.div variants={itemVariants}>
-          <WorkCard 
-            title="Fleek.xyz"
-            role="Frontend Engineer"
-            date="2025"
-            description="Engineered a Component Design System across 6 codebases. Built a high-performance Tauri desktop app maintaining 60fps."
-            tags={['Tauri', 'Rust', 'Cloudflare R2']}
-            variant="compact"
-          />
-        </motion.div>
+        {roles.slice(0, 2).map((r) => (
+          <motion.div key={r.company} variants={itemVariants}>
+            <WorkCard title={r.company} role={r.title} date={r.dates} description={r.summary} tags={r.tags} variant="compact" />
+          </motion.div>
+        ))}
 
         {/* THE "ARCHIVE" BUTTON */}
         <motion.a 

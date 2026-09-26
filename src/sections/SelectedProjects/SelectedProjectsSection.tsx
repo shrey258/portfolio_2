@@ -1,4 +1,5 @@
 import ProjectSpotlight from "./components/ProjectSpotlight";
+import { projects } from "../../data/profile";
 import SectionHeader from "../../components/SectionHeader";
 import { FolderOpen } from "lucide-react";
 import { motion, useReducedMotion, cubicBezier } from "motion/react";
@@ -33,14 +34,9 @@ const SelectedProjectsSection = () => {
       <motion.div {...createReveal(0.15)}>
         <ProjectSpotlight 
           title="Flag Me"
-          subtitle="The GenAI Gift Engine"
-          description={
-            <>
-              A recommendation engine processing <strong className="text-white font-semibold">65k+ records</strong>. 
-              Overcame Amazon's anti-scraping using Offstage WebViews and Gemini AI.
-            </>
-          }
-          tags={['Flutter', 'FastAPI', 'Gemini', 'Python']}
+          subtitle={projects[0].line}
+          description={projects[0].detail}
+          tags={projects[0].tags}
           repoLink="https://github.com/shrey258/flag_me"
           media={
             <div className="h-[240px] bg-[#0a0a0a] relative flex flex-col border-b border-white/5 overflow-hidden">
@@ -64,19 +60,19 @@ const SelectedProjectsSection = () => {
               <div className="p-5 font-mono text-[13px] leading-[1.8] text-white/60 flex flex-col gap-1 z-1">
                   <div>
                       <span className="text-[#666] mr-2">&gt;</span>
-                      init flag_me_engine --target="amazon" --prompt="best gift for my boss who loves tech and is always on the go - budget $200"
+                      flag_me --for="my boss, loves tech, always travelling" --budget=₹15000
                   </div>
                   <div>
                       <span className="text-[#666] mr-2">&gt;</span>
-                      <span className="text-green-400">[SCRAPER]</span> Bypassing anti-bot...
+                      <span className="text-purple-500">[GEMINI]</span> 5 specific picks, brand + model
                   </div>
                   <div>
                       <span className="text-[#666] mr-2">&gt;</span>
-                      <span className="text-purple-500">[GEMINI]</span> Analyzing 65k records...
+                      <span className="text-green-400">[SCRAPER]</span> Live prices: Amazon, Flipkart, Myntra
                   </div>
                   <div className="mt-2">
                       <span className="text-[#666] mr-2">&gt;</span>
-                      <span className="text-white">[RESULT] Best Gift: "Sony WH-1000XM5"</span>
+                      <span className="text-white">[RESULT] Sony WH-1000XM5 · lowest on Flipkart</span>
                   </div>
                   
                   {/* Blinking Cursor */}

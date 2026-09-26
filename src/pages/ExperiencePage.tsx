@@ -4,8 +4,8 @@ import type { MotionProps, Variants } from "motion/react";
 import { ArrowLeft, Clock, Layers } from "lucide-react"; // Added icons
 import { Link } from "react-router-dom";
 import TopoBackground from "../components/TopoBackground";
-import TerminalCard from "../components/TerminalCard";
 import WorkCard from "../sections/Engineering Log/components/WorkCard";
+import { roles } from "../data/profile";
 
 const ExperiencePage = () => {
   // Scroll to top on mount
@@ -142,7 +142,7 @@ const ExperiencePage = () => {
                     fontFamily: "Inter, sans-serif",
                   }}
                 >
-                  2023 — Present
+                  2023 — 2026
                 </div>
               </div>
             </div>
@@ -169,7 +169,7 @@ const ExperiencePage = () => {
                     fontFamily: "Inter, sans-serif",
                   }}
                 >
-                  6 Positions
+                  {roles.length} Positions
                 </div>
               </div>
             </div>
@@ -189,81 +189,18 @@ const ExperiencePage = () => {
             width: "100%",
           }}
         >
-          {/* 1. VIBECODE - Flagship */}
-          <motion.div style={{ gridColumn: "span 2" }} variants={cardVariants}>
-            <WorkCard
-              title="Vibecode"
-              role="Forward-Deployed Engineer (Not A Number Labs)"
-              date="Mar 2026 - Present"
-              description="Lead triage and resolution of customer-reported production incidents, debugging live environments to minimize downtime. Serve as the technical bridge between end-users and the core engineering team — managing direct customer communication while collaborating to ship bug fixes and new features based on real-world feedback."
-              tags={["Production Debug", "Customer Engineering", "Feature Dev", "Technical Support"]}
-              variant="full"
-            />
-          </motion.div>
-
-          {/* 2. GOMINI - Flagship */}
-          <motion.div style={{ gridColumn: "span 2" }} variants={cardVariants}>
-            <WorkCard
-              title="Gomini"
-              role="Founding Engineer (Lead Mobile)"
-              date="Mar 2025 - Present"
-              description="Solely architected the 0-to-1 mobile platform enabling 100% of digital sales. Designed a native-grade UX with Shared Element Transitions that reduced field ops time by 30%."
-              tags={["React Native", "Reanimated", "Supabase", "Mobile Arch"]}
-              variant="full"
-            />
-          </motion.div>
-
-          {/* 2. FLEEK.XYZ - Flagship */}
-          <motion.div style={{ gridColumn: "span 2" }} variants={cardVariants}>
-            <WorkCard
-              title="Fleek.xyz"
-              role="Frontend Engineer (Contract)"
-              date="Aug 2025 - Dec 2025"
-              description="Engineered a Component Design System across 6 codebases. Built a high-performance Tauri desktop app utilizing memoization to maintain 60fps during complex data viz."
-              tags={["Tauri", "Rust/C++", "Cloudflare R2", "Next.js"]}
-              variant="full"
-            />
-          </motion.div>
-
-          {/* 3. SUBSCART - Compact */}
-          <motion.div style={{ gridColumn: "span 1" }} variants={cardVariants}>
-            <WorkCard
-              title="Subscart"
-              role="Software Eng."
-              date="Mar - Jun 2025"
-              description="Achieved 200ms faster perceived latency using Optimistic UI updates on Node.js & Mobile."
-              tags={["Optimistic UI", "Node.js"]}
-              variant="compact"
-            />
-          </motion.div>
-
-          {/* 4. IOTREE MINDS - Compact */}
-          <motion.div style={{ gridColumn: "span 1" }} variants={cardVariants}>
-            <WorkCard
-              title="Iotree Minds"
-              role="Mobile Eng."
-              date="Dec 2024 - Mar 2025"
-              description="Integrated 12 backend APIs and delivered the 'My Clients' module supporting 50+ active users."
-              tags={["API Integration", "UX Revamp"]}
-              variant="compact"
-            />
-          </motion.div>
-
-          <motion.div variants={cardVariants}>
-            <TerminalCard
-              title="IIT Madras"
-              role="Research Intern"
-              date="2023 - 2024 (Periodic)"
-              fileName="research_logs.py"
-              badgeText="READ ONLY"
-              bullets={[
-                "Created a 1 Gbps Python network speed test server.",
-                "Variance maintained below 5%.",
-                "Deployed cross-platform app with sub-second latency.",
-              ]}
-              tags={["Python", "Networking", "High_Performance"]}
-            />
-          </motion.div>
+          {roles.map((r) => (
+            <motion.div key={r.company} style={{ gridColumn: r.featured ? "span 2" : "span 1" }} variants={cardVariants}>
+              <WorkCard
+                title={r.company}
+                role={r.title}
+                date={r.dates}
+                description={[r.summary, ...(r.highlights ?? [])].join(" ")}
+                tags={r.tags}
+                variant={r.featured ? "full" : "compact"}
+              />
+            </motion.div>
+          ))}
         </motion.div>
       </main>
     </div>
