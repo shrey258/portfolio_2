@@ -96,102 +96,6 @@ button {
   scale: 0.97;
 }
 
-/* Section nav: the inked copy slides by clip-path. */
-.nav-link {
-  position: relative;
-}
-/* 36px visual, 44px hit area. */
-.nav-link::before {
-  content: "";
-  position: absolute;
-  inset: -4px 0;
-}
-.nav-ink {
-  transition:
-    clip-path 320ms var(--ease-out-strong),
-    opacity 200ms ease;
-}
-@media (hover: hover) and (pointer: fine) {
-  .nav-link {
-    transition: color 150ms ease;
-  }
-  .nav-link:hover {
-    color: var(--ink);
-  }
-}
-
-/* Two labels in one grid cell cross-fade with a slight blur, so the swap has no layout shift. */
-.swap {
-  transition:
-    opacity 180ms ease-out,
-    scale 180ms ease-out,
-    filter 180ms ease-out;
-}
-.swap[data-hidden="true"] {
-  opacity: 0;
-  scale: 0.96;
-  filter: blur(2px);
-  pointer-events: none;
-}
-
-/* Native <details> that opens smoothly where supported and instantly elsewhere. */
-.disclosure {
-  interpolate-size: allow-keywords;
-}
-.disclosure::details-content {
-  block-size: 0;
-  overflow: clip;
-  opacity: 0;
-  transition:
-    block-size 260ms var(--ease-out-strong),
-    opacity 200ms ease,
-    content-visibility 260ms allow-discrete;
-}
-.disclosure[open]::details-content {
-  block-size: auto;
-  opacity: 1;
-}
-.disclosure-summary::-webkit-details-marker {
-  display: none;
-}
-.disclosure-summary h3::after {
-  content: "+";
-  display: inline-block;
-  margin-left: 0.5rem;
-  color: var(--faint);
-  transition: rotate 200ms var(--ease-out-strong);
-}
-.disclosure[open] .disclosure-summary h3::after {
-  rotate: 45deg;
-}
-
-/* Lab: tiles lift the clip slightly on hover; the dialog morphs via a view transition. */
-@media (hover: hover) and (pointer: fine) {
-  .lab-tile video {
-    transition: scale 250ms var(--ease-out-strong);
-  }
-  .lab-tile:hover video {
-    scale: 1.02;
-  }
-}
-.lab-dialog::backdrop {
-  background: color-mix(in oklch, var(--bg) 88%, transparent);
-  backdrop-filter: blur(6px);
-}
-::view-transition-group(lab-media) {
-  animation-duration: 340ms;
-  animation-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
-}
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation-duration: 220ms;
-}
-
-/* Vertical scrolling still works when a touch starts on the portrait. */
-.dither-canvas {
-  touch-action: pan-y;
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -200,10 +104,5 @@ button {
   *::before,
   *::after {
     transition: none !important;
-  }
-  ::view-transition-group(*),
-  ::view-transition-old(*),
-  ::view-transition-new(*) {
-    animation: none !important;
   }
 }
