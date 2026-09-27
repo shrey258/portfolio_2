@@ -25,7 +25,7 @@
     --surface: oklch(0.21 0.008 70);
     --ink: oklch(0.93 0.01 85);
     --muted: oklch(0.7 0.01 80);
-    --faint: oklch(0.56 0.01 80);
+    --faint: oklch(0.6 0.01 80);
     --rule: oklch(0.28 0.01 70);
     --accent: oklch(0.74 0.08 150);
     color-scheme: dark;
