@@ -12,19 +12,6 @@
   color: var(--ink);
 }
 
-@media (prefers-color-scheme: dark) {
-  .proto-light {
-    --bg: oklch(0.17 0.008 70);
-    --surface: oklch(0.21 0.008 70);
-    --ink: oklch(0.93 0.01 85);
-    --muted: oklch(0.7 0.01 80);
-    --faint: oklch(0.6 0.01 80);
-    --rule: oklch(0.28 0.01 70);
-    --accent: oklch(0.74 0.08 150);
-    color-scheme: dark;
-  }
-}
-
 /* Glass only sits over the dither, so there is something real behind it. */
 .glass {
   background: color-mix(in oklch, var(--bg) 58%, transparent);
@@ -38,14 +25,6 @@
     0 0 0 1px rgb(0 0 0 / 0.05),
     0 1px 3px rgb(0 0 0 / 0.05),
     0 18px 40px -18px rgb(0 0 0 / 0.18);
-}
-@media (prefers-color-scheme: dark) {
-  .proto-light .glass {
-    background: color-mix(in oklch, var(--bg) 62%, transparent);
-    box-shadow:
-      0 0 0 1px rgb(255 255 255 / 0.08),
-      0 24px 48px -24px rgb(0 0 0 / 0.6);
-  }
 }
 
 /* One-time entrance while the hills resolve: the name fades, then the card rises into place. */

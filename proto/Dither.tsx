@@ -19,7 +19,6 @@ uniform vec3 uPaper;
 uniform float uGain;
 uniform float uSeed;
 uniform float uSunY;
-uniform float uNight;
 
 float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 float noise(vec2 p) {
@@ -71,29 +70,8 @@ float horizon(vec2 frag) {
   return v * uGain;
 }
 
-// Same hills after dark: a crescent moon where the sun was, sparse twinkling stars, and
-// silhouetted ridges that get darker as they come closer. Ink is the light colour here.
-float night(vec2 frag) {
-  vec2 uv = frag / uRes;
-  float aspect = uRes.x / uRes.y;
-  float v = mix(0.1, 0.02, smoothstep(0.3, 0.95, uv.y));
-  vec2 moon = vec2(0.72 + (uPointer.x - 0.5) * 0.06, uSunY + (uPointer.y - 0.5) * 0.04);
-  vec2 dm = (uv - moon) * vec2(aspect, 1.0);
-  float r = length(dm);
-  v += 0.18 * smoothstep(0.3, 0.09, r);
-  if (r < 0.085) v = length(dm - vec2(0.034, 0.022)) < 0.078 ? 0.1 : 0.95;
-  float s = hash(floor(frag) + uSeed);
-  if (s > 0.996 && uv.y > 0.45 && r > 0.12) v = 0.55 + 0.45 * sin(uTime * 1.5 + s * 300.0);
-  float cloud = fbm(vec2(uv.x * 3.0 - uTime * 0.012, uv.y * 7.0));
-  v += 0.06 * smoothstep(0.58, 0.78, cloud) * smoothstep(0.45, 0.8, uv.y);
-  if (uv.y < ridge(uv.x, 0.46, 0.22, 1.3, 1.0 + uSeed, 0.004)) v = 0.22;
-  if (uv.y < ridge(uv.x, 0.33, 0.20, 1.9, 7.0 + uSeed, 0.008)) v = 0.12 + 0.06 * fbm(uv * 30.0);
-  if (uv.y < ridge(uv.x, 0.19, 0.18, 2.6, 13.0 + uSeed, 0.013)) v = 0.05 + 0.05 * fbm(uv * 40.0 + 3.0);
-  return v * uGain;
-}
-
 void main() {
-  float v = uMode < 0.5 ? field(gl_FragCoord.xy) : uNight > 0.5 ? night(gl_FragCoord.xy) : horizon(gl_FragCoord.xy);
+  float v = uMode < 0.5 ? field(gl_FragCoord.xy) : horizon(gl_FragCoord.xy);
   float on = step(bayer8(gl_FragCoord.xy) + 0.001, clamp(v, 0.0, 1.0));
   gl_FragColor = vec4(mix(uPaper, uInk, on), 1.0);
 }
@@ -112,8 +90,6 @@ type DitherProps = {
   gain?: number;
   seed?: number;
   sunY?: number;
-  /** Horizon mode only: moon, stars and dark ridges instead of the sun. */
-  night?: boolean;
   /** Ms for the dots to resolve from bare paper on mount; skipped under reduced motion. */
   intro?: number;
   /** Live 0..1 value read every frame; overrides sunY (e.g. scroll progress). */
@@ -121,7 +97,7 @@ type DitherProps = {
   className?: string;
 };
 
-export function Dither({ mode, ink, paper, cell = 4, fps = 24, gain = 1, seed = 0, sunY = 0.6, intro = 0, night = false, sunRef, className = "" }: DitherProps) {
+export function Dither({ mode, ink, paper, cell = 4, fps = 24, gain = 1, seed = 0, sunY = 0.6, intro = 0, sunRef, className = "" }: DitherProps) {
   const ref = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -149,7 +125,6 @@ export function Dither({ mode, ink, paper, cell = 4, fps = 24, gain = 1, seed = 
     gl.uniform3fv(u("uInk"), hexToRgb(ink));
     gl.uniform3fv(u("uPaper"), hexToRgb(paper));
     gl.uniform1f(u("uSeed"), seed);
-    gl.uniform1f(u("uNight"), night ? 1 : 0);
 
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const target = { x: 0.62, y: 0.55 };
@@ -204,7 +179,7 @@ export function Dither({ mode, ink, paper, cell = 4, fps = 24, gain = 1, seed = 
       io.disconnect();
       window.removeEventListener("pointermove", onPointer);
     };
-  }, [mode, ink, paper, cell, fps, gain, seed, sunY, intro, night, sunRef]);
+  }, [mode, ink, paper, cell, fps, gain, seed, sunY, intro, sunRef]);
 
   return (
     <canvas
