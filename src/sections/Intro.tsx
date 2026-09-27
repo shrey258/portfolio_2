@@ -1,7 +1,7 @@
 import { ButtonLink } from "../components/ButtonLink";
 import { LocalTime } from "../components/LocalTime";
 import { TextLink } from "../components/TextLink";
-import { profile, stats } from "../data/profile";
+import { profile } from "../data/profile";
 
 export function Intro() {
   return (
@@ -42,15 +42,6 @@ export function Intro() {
           <TextLink href={profile.x}>X</TextLink>
         </nav>
       </div>
-
-      <dl className="m-0 flex flex-wrap gap-x-10 gap-y-4">
-        {stats.map((s) => (
-          <div key={s.label} className="flex flex-col-reverse">
-            <dt className="text-sm text-muted">{s.label}</dt>
-            <dd className="m-0 font-serif text-4xl tabular-nums">{s.value}</dd>
-          </div>
-        ))}
-      </dl>
     </header>
   );
 }
