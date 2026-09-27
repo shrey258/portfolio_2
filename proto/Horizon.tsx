@@ -9,13 +9,19 @@ import { Projects } from "../src/sections/Projects";
 import { Contact } from "../src/sections/Contact";
 
 // Place: a dithered Darjeeling horizon (sky, sun, tea hills) as the hero; the rest stays paper.
+// Sun by day, moon from 6pm to 6am in Darjeeling, matching the clock under the name.
+const hourInDarjeeling = () =>
+  Number(new Date().toLocaleString("en-GB", { hour: "2-digit", hour12: false, timeZone: "Asia/Kolkata" }));
+
 export default function Horizon() {
+  const hour = hourInDarjeeling();
+  const night = hour >= 18 || hour < 6;
   return (
     <div className="proto-light min-h-screen">
       <header>
         {/* The hills fade into the paper, so the card has no hard seam running through it. */}
         <div className="relative h-[68svh] min-h-[440px] w-full overflow-hidden [mask-image:linear-gradient(to_bottom,black_78%,transparent)]">
-          <Dither mode="horizon" ink="#3f6f52" paper="#f7f4ee" cell={4} fps={20} intro={1200} />
+          <Dither mode="horizon" ink="#3f6f52" paper="#f7f4ee" cell={4} fps={20} intro={1200} moon={night} />
           <div className="absolute inset-x-0 top-0 mx-auto max-w-[1080px] px-5 pt-16 sm:px-8 md:pt-24">
             <h1 className="intro-fade m-0 font-serif text-6xl leading-[0.95] font-normal tracking-[-0.01em] text-balance sm:text-7xl md:text-8xl">{profile.name}</h1>
             <p className="m-0 mt-4 inline-block rounded-full bg-bg px-3 py-1 text-[13px] whitespace-nowrap text-muted sm:text-sm">

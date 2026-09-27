@@ -19,6 +19,7 @@ uniform vec3 uPaper;
 uniform float uGain;
 uniform float uSeed;
 uniform float uSunY;
+uniform float uMoon;
 
 float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 float noise(vec2 p) {
@@ -61,7 +62,8 @@ float horizon(vec2 frag) {
   vec2 ds = (uv - sun) * vec2(aspect, 1.0);
   float r = length(ds);
   v += 0.3 * smoothstep(0.32, 0.09, r);
-  if (r < 0.085) v = 0.0;
+  // After dark the sun becomes a crescent: the shadowed side keeps the sky's dots.
+  if (r < 0.085 && (uMoon < 0.5 || length(ds - vec2(0.034, 0.022)) > 0.078)) v = 0.0;
   float cloud = fbm(vec2(uv.x * 3.0 - uTime * 0.012, uv.y * 7.0));
   v += 0.12 * smoothstep(0.58, 0.78, cloud) * smoothstep(0.45, 0.8, uv.y);
   if (uv.y < ridge(uv.x, 0.46, 0.22, 1.3, 1.0 + uSeed, 0.004)) v = 0.34;
@@ -90,6 +92,8 @@ type DitherProps = {
   gain?: number;
   seed?: number;
   sunY?: number;
+  /** Horizon mode only: draw a crescent moon instead of the sun. */
+  moon?: boolean;
   /** Ms for the dots to resolve from bare paper on mount; skipped under reduced motion. */
   intro?: number;
   /** Live 0..1 value read every frame; overrides sunY (e.g. scroll progress). */
@@ -97,7 +101,7 @@ type DitherProps = {
   className?: string;
 };
 
-export function Dither({ mode, ink, paper, cell = 4, fps = 24, gain = 1, seed = 0, sunY = 0.6, intro = 0, sunRef, className = "" }: DitherProps) {
+export function Dither({ mode, ink, paper, cell = 4, fps = 24, gain = 1, seed = 0, sunY = 0.6, intro = 0, moon = false, sunRef, className = "" }: DitherProps) {
   const ref = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -125,6 +129,7 @@ export function Dither({ mode, ink, paper, cell = 4, fps = 24, gain = 1, seed = 
     gl.uniform3fv(u("uInk"), hexToRgb(ink));
     gl.uniform3fv(u("uPaper"), hexToRgb(paper));
     gl.uniform1f(u("uSeed"), seed);
+    gl.uniform1f(u("uMoon"), moon ? 1 : 0);
 
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const target = { x: 0.62, y: 0.55 };
@@ -179,7 +184,7 @@ export function Dither({ mode, ink, paper, cell = 4, fps = 24, gain = 1, seed = 
       io.disconnect();
       window.removeEventListener("pointermove", onPointer);
     };
-  }, [mode, ink, paper, cell, fps, gain, seed, sunY, intro, sunRef]);
+  }, [mode, ink, paper, cell, fps, gain, seed, sunY, intro, moon, sunRef]);
 
   return (
     <canvas
