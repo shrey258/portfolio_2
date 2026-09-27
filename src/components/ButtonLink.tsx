@@ -1,8 +1,8 @@
 import type { ComponentProps } from "react";
 
 const variants = {
-  primary: "bg-ink text-bg",
-  secondary: "border border-rule text-ink",
+  primary: "bg-ink text-bg hover:bg-ink/85",
+  secondary: "border border-rule text-ink hover:border-ink/30",
 };
 
 type ButtonLinkProps = ComponentProps<"a"> & { variant?: keyof typeof variants };

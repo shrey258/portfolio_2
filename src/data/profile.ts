@@ -62,7 +62,7 @@ export const roles: Role[] = [
     title: "Founding Engineer",
     dates: "Mar 2025 – Feb 2026",
     summary:
-      "Built the Flutter app and Supabase backend 0 → 1 as the sole engineer, before the company incorporated. It became the company's digital sales channel.",
+      "Built the Flutter app and Supabase backend 0 → 1 as the sole engineer, before the company incorporated. It became the company’s digital sales channel.",
     highlights: [
       "Payments: Razorpay and Flexi-Pay subscriptions with a fail-safe for incomplete payments.",
       "KYC with live status, referral deep links, FCM push, gesture-driven UI with shared-element transitions.",
@@ -82,7 +82,7 @@ export const roles: Role[] = [
     title: "Mobile Engineer",
     dates: "Dec 2024 – Mar 2025",
     summary:
-      "Launch features for a client's Flutter matchmaking app, 500+ downloads in month one. Built the \"My Clients\" module.",
+      "Launch features for a client’s Flutter matchmaking app, 500+ downloads in month one. Built the “My Clients” module.",
     tags: ["Flutter", "APIs"],
   },
   {
@@ -107,7 +107,7 @@ export const projects: Project[] = [
     name: "Flag Me",
     line: "An AI shopping assistant before ChatGPT had one.",
     detail:
-      "Gemini turns a person's details into specific gifts, then scrapers pull live prices from Amazon, Flipkart and Myntra with affiliate links.",
+      "Gemini turns a person’s details into specific gifts, then scrapers pull live prices from Amazon, Flipkart and Myntra with affiliate links.",
     tags: ["Flutter", "FastAPI", "Gemini"],
     href: "https://github.com/shrey258/flag_me",
   },

@@ -11,7 +11,7 @@ export function Lab() {
   return (
     <Section id="lab" title="Lab">
       <div className="flex flex-col gap-8">
-        <p className="m-0 max-w-[55ch] leading-relaxed text-muted">
+        <p className="m-0 max-w-[55ch] leading-relaxed text-pretty text-muted">
           Interaction studies I build on the side and post on{" "}
           <TextLink className="text-ink" href={profile.xHighlights}>X</TextLink>. The receipt printer has a{" "}
           <TextLink className="text-ink" href={writing[0].href}>write-up</TextLink>.

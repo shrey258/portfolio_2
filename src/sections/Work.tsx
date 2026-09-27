@@ -14,7 +14,7 @@ export function Work() {
               </h3>
               <span className="font-mono text-xs text-faint tabular-nums">{r.dates}</span>
             </div>
-            <p className="m-0 max-w-[65ch] leading-relaxed text-muted">{r.summary}</p>
+            <p className="m-0 max-w-[65ch] leading-relaxed text-pretty text-muted">{r.summary}</p>
             {r.highlights && (
               <ul className="m-0 flex max-w-[65ch] list-none flex-col gap-2 p-0 leading-relaxed">
                 {r.highlights.map((h) => (

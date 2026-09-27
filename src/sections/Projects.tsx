@@ -9,12 +9,12 @@ export function Projects() {
       <EntryList>
         {projects.map((p) => (
           <Entry key={p.name} className="gap-2">
-            <h3 className="m-0 text-base font-medium">
+            <h3 className="group m-0 text-base font-medium">
               <TextLink href={p.href}>{p.name}</TextLink>
-              <span className="text-faint" aria-hidden> ↗</span>
+              <span className="inline-block pl-1 text-faint transition-[translate] duration-150 ease-out group-hover:translate-x-[2px] group-hover:-translate-y-[2px]" aria-hidden>↗</span>
             </h3>
-            <p className="m-0 text-lg leading-snug">{p.line}</p>
-            <p className="m-0 max-w-[65ch] leading-relaxed text-muted">{p.detail}</p>
+            <p className="m-0 text-lg leading-snug text-pretty">{p.line}</p>
+            <p className="m-0 max-w-[65ch] leading-relaxed text-pretty text-muted">{p.detail}</p>
             <Tags items={p.tags} />
           </Entry>
         ))}

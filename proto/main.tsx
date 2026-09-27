@@ -4,15 +4,9 @@ import "../src/index.css";
 import "./picker.css";
 import "./proto.css";
 import Horizon from "./Horizon";
-import Valley from "./Valley";
-import Terraces from "./Terraces";
-import Split from "./Split";
 
 const variants = [
   { name: "Horizon", C: Horizon },
-  { name: "Valley", C: Valley },
-  { name: "Terraces", C: Terraces },
-  { name: "Split", C: Split },
 ];
 
 function Harness() {

@@ -13,7 +13,7 @@
   --surface: oklch(0.94 0.01 85);
   --ink: oklch(0.22 0.015 70);
   --muted: oklch(0.48 0.015 70);
-  --faint: oklch(0.6 0.012 70);
+  --faint: oklch(0.52 0.012 70);
   --rule: oklch(0.22 0.015 70 / 0.1);
   --accent: oklch(0.5 0.09 150);
   color-scheme: light;
@@ -49,6 +49,7 @@
 html {
   background: var(--bg);
   color: var(--ink);
+  font-synthesis: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -65,7 +66,7 @@ body {
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--ink);
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -80,6 +81,7 @@ button {
   text-decoration-line: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
+  text-decoration-skip-ink: auto;
   text-decoration-color: var(--rule);
   transition: text-decoration-color 150ms ease;
 }
@@ -90,7 +92,7 @@ button {
 }
 
 .pressable {
-  transition: scale 150ms ease-out, background-color 150ms ease;
+  transition: scale 150ms ease-out, background-color 150ms ease, border-color 150ms ease;
 }
 .pressable:active {
   scale: 0.97;

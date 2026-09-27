@@ -90,12 +90,14 @@ type DitherProps = {
   gain?: number;
   seed?: number;
   sunY?: number;
+  /** Ms for the dots to resolve from bare paper on mount; skipped under reduced motion. */
+  intro?: number;
   /** Live 0..1 value read every frame; overrides sunY (e.g. scroll progress). */
   sunRef?: { current: number };
   className?: string;
 };
 
-export function Dither({ mode, ink, paper, cell = 4, fps = 24, gain = 1, seed = 0, sunY = 0.6, sunRef, className = "" }: DitherProps) {
+export function Dither({ mode, ink, paper, cell = 4, fps = 24, gain = 1, seed = 0, sunY = 0.6, intro = 0, sunRef, className = "" }: DitherProps) {
   const ref = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -122,7 +124,6 @@ export function Dither({ mode, ink, paper, cell = 4, fps = 24, gain = 1, seed = 
     gl.uniform1f(u("uMode"), mode === "field" ? 0 : 1);
     gl.uniform3fv(u("uInk"), hexToRgb(ink));
     gl.uniform3fv(u("uPaper"), hexToRgb(paper));
-    gl.uniform1f(u("uGain"), gain);
     gl.uniform1f(u("uSeed"), seed);
 
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -145,6 +146,9 @@ export function Dither({ mode, ink, paper, cell = 4, fps = 24, gain = 1, seed = 
       pointer.x += (target.x - pointer.x) * 0.08;
       pointer.y += (target.y - pointer.y) * 0.08;
       gl.uniform1f(u("uTime"), reduced ? 12 : (now - start) / 1000);
+      // Quint ease-out, close to the site's --ease-out-strong: the dots arrive fast, then settle.
+      const t = reduced || !intro ? 1 : Math.min(1, Math.max(0, (now - start) / intro));
+      gl.uniform1f(u("uGain"), gain * (1 - (1 - t) ** 5));
       gl.uniform2f(u("uPointer"), pointer.x, pointer.y);
       gl.uniform1f(u("uSunY"), sunRef ? sunRef.current : sunY);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
@@ -175,7 +179,7 @@ export function Dither({ mode, ink, paper, cell = 4, fps = 24, gain = 1, seed = 
       io.disconnect();
       window.removeEventListener("pointermove", onPointer);
     };
-  }, [mode, ink, paper, cell, fps, gain, seed, sunY, sunRef]);
+  }, [mode, ink, paper, cell, fps, gain, seed, sunY, intro, sunRef]);
 
   return (
     <canvas

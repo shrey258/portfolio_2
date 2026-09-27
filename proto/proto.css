@@ -1,22 +1,10 @@
 /* Prototype-only surfaces. */
-.proto-dark {
-  --bg: oklch(0.16 0.008 70);
-  --surface: oklch(0.21 0.008 70);
-  --ink: oklch(0.94 0.01 85);
-  --muted: oklch(0.72 0.01 80);
-  --faint: oklch(0.58 0.01 80);
-  --rule: oklch(0.3 0.01 70);
-  --accent: oklch(0.76 0.09 150);
-  color-scheme: dark;
-  background: var(--bg);
-  color: var(--ink);
-}
 .proto-light {
   --bg: oklch(0.975 0.008 85);
   --surface: oklch(0.94 0.01 85);
   --ink: oklch(0.22 0.015 70);
   --muted: oklch(0.48 0.015 70);
-  --faint: oklch(0.6 0.012 70);
+  --faint: oklch(0.52 0.012 70);
   --rule: oklch(0.22 0.015 70 / 0.1);
   --accent: oklch(0.5 0.09 150);
   color-scheme: light;
@@ -31,9 +19,6 @@
   backdrop-filter: blur(14px) saturate(1.15);
   border-radius: 24px;
 }
-.proto-dark .glass {
-  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.09), 0 24px 48px -24px rgb(0 0 0 / 0.6);
-}
 .proto-light .glass {
   background: color-mix(in oklch, var(--bg) 72%, transparent);
   box-shadow:
@@ -42,18 +27,21 @@
     0 18px 40px -18px rgb(0 0 0 / 0.18);
 }
 
-/* Reel: hovering one clip quiets the others. Pointer devices only. */
-@media (hover: hover) and (pointer: fine) {
-  .reel-strip:has(.reel-tile:hover) .reel-tile:not(:hover) {
-    opacity: 0.45;
-  }
-  .reel-tile:hover {
-    translate: 0 -4px;
-  }
+/* One-time entrance while the hills resolve: the name fades, then the card rises into place. */
+@keyframes intro-fade {
+  from { opacity: 0; }
 }
-.reel-tile {
-  transition: opacity 200ms ease, translate 250ms cubic-bezier(0.23, 1, 0.32, 1);
+@keyframes intro-rise {
+  from { opacity: 0; translate: 0 12px; }
+}
+.intro-fade {
+  animation: intro-fade 400ms var(--ease-out-strong) both;
+}
+.intro-rise {
+  animation: intro-rise 500ms var(--ease-out-strong) 250ms both;
 }
 @media (prefers-reduced-motion: reduce) {
-  .reel-tile { transition: none; }
+  .intro-rise {
+    animation-name: intro-fade;
+  }
 }
