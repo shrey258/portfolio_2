@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { track } from "../analytics";
 import { Tags } from "../components/Tags";
 import { Section } from "../components/Section";
 import { roles } from "../data/profile";
@@ -82,7 +83,10 @@ export function Work() {
     <Section id="work" title="Work">
       <ul className="m-0 list-none p-0">
         {roles.map((r) => (
-          <Row key={r.company} role={r} open={open === r.company} onToggle={() => setOpen(open === r.company ? null : r.company)} />
+          <Row key={r.company} role={r} open={open === r.company} onToggle={() => {
+              if (open !== r.company) track("work_role_expanded", { company: r.company });
+              setOpen(open === r.company ? null : r.company);
+            }} />
         ))}
       </ul>
     </Section>

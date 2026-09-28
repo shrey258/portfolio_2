@@ -5,6 +5,7 @@ type SectionProps = ComponentProps<"section"> & { title: string };
 export function Section({ title, children, className = "", ...props }: SectionProps) {
   return (
     <section
+      data-section={props.id}
       className={`grid scroll-mt-10 gap-6 border-t border-rule pt-8 md:grid-cols-[180px_1fr] md:gap-10 ${className}`}
       {...props}
     >

@@ -1,4 +1,6 @@
 import { Analytics } from "@vercel/analytics/react";
+import { useEffect } from "react";
+import { startAnalytics } from "./analytics";
 import { Contact } from "./sections/Contact";
 import { Hero } from "./sections/Hero";
 import { Lab } from "./sections/Lab";
@@ -6,6 +8,9 @@ import { Projects } from "./sections/Projects";
 import { Work } from "./sections/Work";
 
 export default function App() {
+  useEffect(() => {
+    startAnalytics();
+  }, []);
   return (
     <>
       <a

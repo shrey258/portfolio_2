@@ -13,8 +13,8 @@ export function Lab() {
       <div className="flex flex-col gap-8">
         <p className="m-0 max-w-[55ch] leading-relaxed text-pretty text-muted">
           Interaction studies I build on the side and post on{" "}
-          <TextLink className="text-ink" href={profile.xHighlights}>X</TextLink>. The receipt printer has a{" "}
-          <TextLink className="text-ink" href={writing[0].href}>write-up</TextLink>.
+          <TextLink data-track="social_clicked" data-platform="x" className="text-ink" href={profile.xHighlights}>X</TextLink>. The receipt printer has a{" "}
+          <TextLink data-track="writeup_clicked" className="text-ink" href={writing[0].href}>write-up</TextLink>.
         </p>
         <div className="grid grid-cols-2 gap-x-4 gap-y-8 lg:grid-cols-4">
           {phones.map((item) => <LabVideo key={item.src} item={item} />)}

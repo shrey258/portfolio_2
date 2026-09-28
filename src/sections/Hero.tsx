@@ -13,7 +13,7 @@ export function Hero() {
   const hour = hourInDarjeeling();
   const night = hour >= 18 || hour < 6;
   return (
-    <header>
+    <header data-section="hero">
       {/* The hills fade into the paper, so the card has no hard seam running through it. */}
       <div className="relative h-[68svh] min-h-[440px] w-full overflow-hidden [mask-image:linear-gradient(to_bottom,black_78%,transparent)]">
         <Dither ink="#3f6f52" paper="#f7f4ee" moon={night} />
@@ -34,12 +34,12 @@ export function Hero() {
             <span className="font-medium">{profile.title}.</span> <span className="text-muted">{profile.tagline}</span>
           </p>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
-            <ButtonLink href={`mailto:${profile.email}`}>Email me</ButtonLink>
-            <ButtonLink variant="secondary" href={profile.resume} target="_blank" rel="noreferrer">Resume</ButtonLink>
+            <ButtonLink data-track="email_clicked" href={`mailto:${profile.email}`}>Email me</ButtonLink>
+            <ButtonLink data-track="resume_clicked" variant="secondary" href={profile.resume} target="_blank" rel="noreferrer">Resume</ButtonLink>
             <nav aria-label="Profiles" className="flex gap-4 text-sm text-muted">
-              <TextLink className="hit" href={profile.github}>GitHub</TextLink>
-              <TextLink className="hit" href={profile.linkedin}>LinkedIn</TextLink>
-              <TextLink className="hit" href={profile.x}>X</TextLink>
+              <TextLink data-track="social_clicked" data-platform="github" className="hit" href={profile.github}>GitHub</TextLink>
+              <TextLink data-track="social_clicked" data-platform="linkedin" className="hit" href={profile.linkedin}>LinkedIn</TextLink>
+              <TextLink data-track="social_clicked" data-platform="x" className="hit" href={profile.x}>X</TextLink>
             </nav>
           </div>
         </div>

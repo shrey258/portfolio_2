@@ -10,7 +10,7 @@ export function Projects() {
         {projects.map((p) => (
           <li key={p.name} className="flex flex-col gap-2 py-6 first:pt-0">
             <h3 className="group m-0 text-base font-medium">
-              <TextLink className="hit" href={p.href}>{p.name}</TextLink>
+              <TextLink data-track="project_clicked" data-project={p.name} className="hit" href={p.href}>{p.name}</TextLink>
               <span className="inline-block pl-1 text-faint transition-[translate] duration-150 ease-out group-hover:translate-x-[2px] group-hover:-translate-y-[2px]" aria-hidden>↗</span>
             </h3>
             <p className="m-0 text-lg leading-snug text-pretty">{p.line}</p>
