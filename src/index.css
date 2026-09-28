@@ -1,30 +1,157 @@
-@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&display=swap");
 @import "tailwindcss";
 
-:root {
-  --font-display-serif: "Instrument Serif", "Times New Roman", serif;
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("/fonts/instrument-serif.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
 }
 
-/* stylelint-disable-next-line */
-@theme {
-  --animate-scan: scan 2s linear infinite;
-  
-  @keyframes scan {
-    0% { transform: translateY(-100%); }
-    100% { transform: translateY(100%); }
+/* Warm paper and ink; the accent is Darjeeling tea green. Light only: the dithered hills are drawn on paper. */
+:root {
+  --bg: oklch(0.975 0.008 85);
+  --surface: oklch(0.94 0.01 85);
+  --ink: oklch(0.22 0.015 70);
+  --muted: oklch(0.48 0.015 70);
+  --faint: oklch(0.52 0.012 70);
+  --rule: oklch(0.22 0.015 70 / 0.1);
+  --accent: oklch(0.5 0.09 150);
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-rule: var(--rule);
+  --color-accent: var(--accent);
+  --font-serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --font-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+html {
+  background: var(--bg);
+  color: var(--ink);
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: color-mix(in oklch, var(--accent) 28%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+a,
+button {
+  touch-action: manipulation;
+}
+
+/* Grows a small link's tap area to ~44px without moving layout. Only for links with room around them. */
+.hit {
+  position: relative;
+}
+.hit::before {
+  content: "";
+  position: absolute;
+  inset: -12px -8px;
+}
+
+/* Text links: the underline is the affordance, it firms up on hover. */
+.link {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-skip-ink: auto;
+  text-decoration-color: var(--rule);
+  transition: text-decoration-color 150ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .link:hover {
+    text-decoration-color: currentColor;
   }
 }
 
-.font-display-serif {
-  font-family: var(--font-display-serif);
+.pressable {
+  transition: scale 150ms ease-out, background-color 150ms ease, border-color 150ms ease;
+}
+.pressable:active {
+  scale: 0.97;
 }
 
-/* CSS reset and base styles can go here */
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Glass only sits over the dither, so there is something real behind it. */
+.glass {
+  background: color-mix(in oklch, var(--bg) 72%, transparent);
+  -webkit-backdrop-filter: blur(14px) saturate(1.15);
+  backdrop-filter: blur(14px) saturate(1.15);
+  border-radius: 24px;
+  box-shadow:
+    0 0 0 1px rgb(0 0 0 / 0.05),
+    0 1px 3px rgb(0 0 0 / 0.05),
+    0 18px 40px -18px rgb(0 0 0 / 0.18);
+}
+
+/* One-time entrance while the hills resolve: the name fades, then the card rises into place. */
+@keyframes intro-fade {
+  from { opacity: 0; }
+}
+@keyframes intro-rise {
+  from { opacity: 0; translate: 0 12px; }
+}
+.intro-fade {
+  animation: intro-fade 400ms var(--ease-out-strong) both;
+}
+.intro-rise {
+  animation: intro-rise 500ms var(--ease-out-strong) 250ms both;
+}
+
+/* Work rows that open tint on hover and their chevron darkens. */
+.row-btn {
+  transition: background-color 150ms ease;
+}
+.chev {
+  flex: none;
+  transition: rotate 200ms var(--ease-out-strong), color 150ms ease;
+}
+.chev.is-open {
+  rotate: 180deg;
+  color: var(--ink);
+}
+@media (hover: hover) and (pointer: fine) {
+  .row-btn:hover {
+    background-color: color-mix(in oklch, var(--ink) 4%, transparent);
+  }
+  .row-btn:hover .chev {
+    color: var(--ink);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-rise {
+    animation-name: intro-fade;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
 }
