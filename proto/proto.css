@@ -45,3 +45,24 @@
     animation-name: intro-fade;
   }
 }
+
+/* Work prototype (throwaway). Rows that open tint on hover and their chevron darkens. */
+.row-btn {
+  transition: background-color 150ms ease;
+}
+.chev {
+  flex: none;
+  transition: rotate 200ms cubic-bezier(0.23, 1, 0.32, 1), color 150ms ease;
+}
+.chev.is-open {
+  rotate: 180deg;
+  color: var(--ink);
+}
+@media (hover: hover) and (pointer: fine) {
+  .row-btn:hover {
+    background-color: color-mix(in oklch, var(--ink) 4%, transparent);
+  }
+  .row-btn:hover .chev {
+    color: var(--ink);
+  }
+}

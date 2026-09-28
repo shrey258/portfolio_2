@@ -4,9 +4,11 @@ import "../src/index.css";
 import "./picker.css";
 import "./proto.css";
 import Horizon from "./Horizon";
+import { WorkLogos } from "./work";
 
 const variants = [
-  { name: "Horizon", C: Horizon },
+  { name: "Horizon", C: () => <Horizon /> },
+  { name: "Logos", C: () => <Horizon work={<WorkLogos />} /> },
 ];
 
 function Harness() {

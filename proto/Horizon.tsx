@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { Dither } from "./Dither";
 import { ButtonLink } from "../src/components/ButtonLink";
 import { LocalTime } from "../src/components/LocalTime";
@@ -13,7 +14,7 @@ import { Contact } from "../src/sections/Contact";
 const hourInDarjeeling = () =>
   Number(new Date().toLocaleString("en-GB", { hour: "2-digit", hour12: false, timeZone: "Asia/Kolkata" }));
 
-export default function Horizon() {
+export default function Horizon({ work = <Work /> }: { work?: ReactNode }) {
   const hour = hourInDarjeeling();
   const night = hour >= 18 || hour < 6;
   return (
@@ -53,7 +54,7 @@ export default function Horizon() {
       </header>
 
       <main className="relative mx-auto mt-20 flex max-w-[1080px] flex-col gap-20 px-4 pb-32 sm:px-8">
-        <Work />
+        {work}
         <Lab />
         <Projects />
         <Contact />
