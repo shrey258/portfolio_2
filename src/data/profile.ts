@@ -23,7 +23,6 @@ export type Role = {
   summary: string;
   highlights?: string[];
   tags: string[];
-  featured?: boolean;
 };
 
 export const roles: Role[] = [
@@ -41,7 +40,6 @@ export const roles: Role[] = [
       "Expo SDK 54 / React Native 0.81 migration and nested subagent streaming in the agent UI.",
     ],
     tags: ["TypeScript", "Go", "LLM Platform", "Billing", "Expo"],
-    featured: true,
   },
   {
     company: "Fleek.xyz",
@@ -55,7 +53,6 @@ export const roles: Role[] = [
       "Moved media to Cloudflare R2, added Statsig remote config, shipped a FLUX image bot on Fly.io.",
     ],
     tags: ["TypeScript", "React", "Tauri", "Cloudflare R2"],
-    featured: true,
   },
   {
     company: "Gomini",
@@ -68,7 +65,6 @@ export const roles: Role[] = [
       "KYC with live status, referral deep links, FCM push, gesture-driven UI with shared-element transitions.",
     ],
     tags: ["Flutter", "Supabase", "Riverpod", "Razorpay"],
-    featured: true,
   },
   {
     company: "Subscart",
@@ -126,13 +122,6 @@ export const projects: Project[] = [
     tags: ["Flutter", "Riverpod"],
     href: "https://apps.apple.com/in/app/campus-app-the-all-in-one/id6760725730",
   },
-];
-
-export const stack = [
-  { group: "Languages", items: ["TypeScript", "Go", "Python", "Dart"] },
-  { group: "Product", items: ["React", "Next.js", "React Native", "Expo", "Flutter"] },
-  { group: "Backend", items: ["Node.js", "PostgreSQL", "Supabase", "Stripe", "LLM routing"] },
-  { group: "Craft", items: ["Motion", "Reanimated", "Tailwind", "Rive", "Figma"] },
 ];
 
 export const writing = [

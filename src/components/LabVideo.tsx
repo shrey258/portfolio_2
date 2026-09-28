@@ -35,7 +35,7 @@ export function LabVideo({ item }: { item: LabItem }) {
           className="block h-auto w-full"
         />
       </div>
-      <figcaption className="flex items-baseline justify-between gap-3 text-sm">
+      <figcaption className="flex flex-col gap-0.5 text-sm">
         <span>{item.title}</span>
         <span className="font-mono text-xs text-faint">{item.tech}</span>
       </figcaption>

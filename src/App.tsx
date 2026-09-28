@@ -1,11 +1,9 @@
 import { Analytics } from "@vercel/analytics/react";
 import { Contact } from "./sections/Contact";
-import { Intro } from "./sections/Intro";
+import { Hero } from "./sections/Hero";
 import { Lab } from "./sections/Lab";
 import { Projects } from "./sections/Projects";
-import { Stack } from "./sections/Stack";
 import { Work } from "./sections/Work";
-import { Writing } from "./sections/Writing";
 
 export default function App() {
   return (
@@ -16,13 +14,11 @@ export default function App() {
       >
         Skip to work
       </a>
-      <main className="mx-auto flex max-w-[1080px] flex-col gap-20 px-5 pt-16 pb-12 sm:px-8 md:pt-24">
-        <Intro />
+      <Hero />
+      <main className="mx-auto mt-20 flex max-w-[1080px] flex-col gap-20 px-4 pb-32 sm:px-8">
         <Work />
         <Lab />
         <Projects />
-        <Stack />
-        <Writing />
         <Contact />
       </main>
       <Analytics />

@@ -7,7 +7,7 @@
   font-display: swap;
 }
 
-/* Warm paper and ink; the accent is Darjeeling tea green. */
+/* Warm paper and ink; the accent is Darjeeling tea green. Light only: the dithered hills are drawn on paper. */
 :root {
   --bg: oklch(0.975 0.008 85);
   --surface: oklch(0.94 0.01 85);
@@ -17,19 +17,6 @@
   --rule: oklch(0.22 0.015 70 / 0.1);
   --accent: oklch(0.5 0.09 150);
   color-scheme: light;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: oklch(0.17 0.008 70);
-    --surface: oklch(0.21 0.008 70);
-    --ink: oklch(0.93 0.01 85);
-    --muted: oklch(0.7 0.01 80);
-    --faint: oklch(0.56 0.01 80);
-    --rule: oklch(0.28 0.01 70);
-    --accent: oklch(0.74 0.08 150);
-    color-scheme: dark;
-  }
 }
 
 @theme inline {
@@ -98,7 +85,57 @@ button {
   scale: 0.97;
 }
 
+/* Glass only sits over the dither, so there is something real behind it. */
+.glass {
+  background: color-mix(in oklch, var(--bg) 72%, transparent);
+  -webkit-backdrop-filter: blur(14px) saturate(1.15);
+  backdrop-filter: blur(14px) saturate(1.15);
+  border-radius: 24px;
+  box-shadow:
+    0 0 0 1px rgb(0 0 0 / 0.05),
+    0 1px 3px rgb(0 0 0 / 0.05),
+    0 18px 40px -18px rgb(0 0 0 / 0.18);
+}
+
+/* One-time entrance while the hills resolve: the name fades, then the card rises into place. */
+@keyframes intro-fade {
+  from { opacity: 0; }
+}
+@keyframes intro-rise {
+  from { opacity: 0; translate: 0 12px; }
+}
+.intro-fade {
+  animation: intro-fade 400ms var(--ease-out-strong) both;
+}
+.intro-rise {
+  animation: intro-rise 500ms var(--ease-out-strong) 250ms both;
+}
+
+/* Work rows that open tint on hover and their chevron darkens. */
+.row-btn {
+  transition: background-color 150ms ease;
+}
+.chev {
+  flex: none;
+  transition: rotate 200ms var(--ease-out-strong), color 150ms ease;
+}
+.chev.is-open {
+  rotate: 180deg;
+  color: var(--ink);
+}
+@media (hover: hover) and (pointer: fine) {
+  .row-btn:hover {
+    background-color: color-mix(in oklch, var(--ink) 4%, transparent);
+  }
+  .row-btn:hover .chev {
+    color: var(--ink);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .intro-rise {
+    animation-name: intro-fade;
+  }
   html {
     scroll-behavior: auto;
   }

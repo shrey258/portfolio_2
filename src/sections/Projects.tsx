@@ -10,7 +10,7 @@ export function Projects() {
         {projects.map((p) => (
           <Entry key={p.name} className="gap-2">
             <h3 className="group m-0 text-base font-medium">
-              <TextLink href={p.href}>{p.name}</TextLink>
+              <TextLink className="relative before:absolute before:-inset-x-2 before:-inset-y-2.5" href={p.href}>{p.name}</TextLink>
               <span className="inline-block pl-1 text-faint transition-[translate] duration-150 ease-out group-hover:translate-x-[2px] group-hover:-translate-y-[2px]" aria-hidden>↗</span>
             </h3>
             <p className="m-0 text-lg leading-snug text-pretty">{p.line}</p>
