@@ -23,6 +23,8 @@ export type Role = {
   summary: string;
   highlights?: string[];
   tags: string[];
+  /** Shown on a light plate. `baked`: the file already includes its own plate. Without a logo, the initial is used. */
+  logo?: { src: string; bg?: string; baked?: boolean };
 };
 
 export const roles: Role[] = [
@@ -40,6 +42,7 @@ export const roles: Role[] = [
       "Expo SDK 54 / React Native 0.81 migration and nested subagent streaming in the agent UI.",
     ],
     tags: ["TypeScript", "Go", "LLM Platform", "Billing", "Expo"],
+    logo: { src: "/logos/vibecode.png", baked: true },
   },
   {
     company: "Fleek.xyz",
@@ -53,6 +56,7 @@ export const roles: Role[] = [
       "Moved media to Cloudflare R2, added Statsig remote config, shipped a FLUX image bot on Fly.io.",
     ],
     tags: ["TypeScript", "React", "Tauri", "Cloudflare R2"],
+    logo: { src: "/logos/fleek.png", bg: "#111" },
   },
   {
     company: "Gomini",
@@ -65,6 +69,7 @@ export const roles: Role[] = [
       "KYC with live status, referral deep links, FCM push, gesture-driven UI with shared-element transitions.",
     ],
     tags: ["Flutter", "Supabase", "Riverpod", "Razorpay"],
+    logo: { src: "/logos/gomini.png" },
   },
   {
     company: "Subscart",
@@ -87,6 +92,7 @@ export const roles: Role[] = [
     dates: "2023, 2024",
     summary: "A 1 Gbps Python speed-test server with <5% variance, and a Flutter app with sub-second live readings.",
     tags: ["Python", "Networking", "Flutter"],
+    logo: { src: "/logos/institution.svg" },
   },
 ];
 

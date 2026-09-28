@@ -63,6 +63,16 @@ button {
   touch-action: manipulation;
 }
 
+/* Grows a small link's tap area to ~44px without moving layout. Only for links with room around them. */
+.hit {
+  position: relative;
+}
+.hit::before {
+  content: "";
+  position: absolute;
+  inset: -12px -8px;
+}
+
 /* Text links: the underline is the affordance, it firms up on hover. */
 .link {
   text-decoration-line: underline;

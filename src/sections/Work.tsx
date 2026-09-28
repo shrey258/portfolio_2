@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Tags } from "../components/Entry";
+import { Tags } from "../components/Tags";
 import { Section } from "../components/Section";
 import { roles } from "../data/profile";
 import type { Role } from "../data/profile";
@@ -7,16 +7,8 @@ import type { Role } from "../data/profile";
 // Logo rows: the way recruiters skim (logo, one sentence, dates), with details on request.
 
 // Every logo sits the way Vibecode's app icon does: a small rounded tile inset on a light plate.
-// Vibecode's file already has the plate baked in, so it fills the frame.
-const LOGOS: Record<string, { src: string; bg?: string; baked?: boolean }> = {
-  Vibecode: { src: "/logos/vibecode.png", baked: true },
-  "Fleek.xyz": { src: "/logos/fleek.png", bg: "#111" },
-  Gomini: { src: "/logos/gomini.png" },
-  "IIT Madras · 5G Testbed": { src: "/logos/institution.svg" },
-};
-
 function Logo({ role }: { role: Role }) {
-  const logo = LOGOS[role.company];
+  const { logo } = role;
   return (
     <span className="grid size-11 shrink-0 place-items-center overflow-hidden rounded-[10px] bg-[#f3f3f3] shadow-[0_0_0_1px_var(--rule)]" aria-hidden>
       {logo?.baked ? (
