@@ -117,14 +117,14 @@ export const projects: Project[] = [
     detail:
       "Gemini parses plain-English edits into trims, cuts and speed changes on an FFmpeg backend, with a sprite-sheet timeline for instant scrubbing.",
     tags: ["Next.js", "FastAPI", "FFmpeg", "Gemini"],
-    href: "https://github.com/shrey258/video_editor_agent",
+    href: "https://video-editor-agent.vercel.app",
   },
   {
     name: "CampusApp",
     line: "Attendance, timetable and grades for SRM students.",
     detail: "A Flutter + Riverpod student app, still maintained.",
     tags: ["Flutter", "Riverpod"],
-    href: "https://github.com/CampusDataSRM/CampusApp",
+    href: "https://play.google.com/store/apps/details?id=com.campusweb.campusapp",
   },
 ];
 
