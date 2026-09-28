@@ -157,6 +157,10 @@ export const lab: LabItem[] = [
   { title: "Liquid glass login", tech: "Reanimated", src: "login", width: 540, height: 1174 },
   { title: "Water reflection", tech: "Expo", src: "reflection", width: 540, height: 1174 },
   { title: "Paparazzi loader", tech: "CSS keyframes", src: "paparazzi", width: 540, height: 1174 },
+  { title: "Voice gradient", tech: "Skia", src: "grok-gradient", width: 540, height: 1174 },
+  { title: "Pin preview", tech: "Gesture Handler", src: "pinterest-overlay", width: 540, height: 1174 },
+  { title: "Fluid form", tech: "Reanimated", src: "fluid-form", width: 540, height: 1174 },
+  { title: "iPod dictation", tech: "SwiftUI", src: "ipod-speech", width: 540, height: 1174 },
   { title: "Profile card", tech: "Motion", src: "profile-card", width: 1280, height: 830 },
   { title: "X-ray", tech: "Pure CSS", src: "xray", width: 1280, height: 838 },
 ];
