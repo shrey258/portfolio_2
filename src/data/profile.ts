@@ -124,7 +124,7 @@ export const projects: Project[] = [
     line: "Attendance, timetable and grades for SRM students.",
     detail: "A Flutter + Riverpod student app, still maintained.",
     tags: ["Flutter", "Riverpod"],
-    href: "https://play.google.com/store/apps/details?id=com.campusweb.campusapp",
+    href: "https://apps.apple.com/app/id6760725730",
   },
 ];
 
