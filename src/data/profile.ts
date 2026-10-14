@@ -106,6 +106,14 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    name: "Email Tracker",
+    line: "Gmail open and click tracking, with nothing added to your email.",
+    detail:
+      "You host the Go server yourself. The Chrome extension rewrites your Sent copy through the Gmail API, so opening it on your phone doesn’t count as a read.",
+    tags: ["Go", "Postgres", "Chrome Extension", "Gmail API"],
+    href: "https://emailtracker.shrey258.com",
+  },
+  {
     name: "Flag Me",
     line: "An AI shopping assistant before ChatGPT had one.",
     detail:
